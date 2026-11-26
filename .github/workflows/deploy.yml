@@ -99,9 +99,9 @@ jobs:
                   body: form,
                 });
                 const result = await response.json();
-                const data = result?.result?.data;
+                const data = result?.data;
 
-                if (!response.ok || result?.result?.status !== 1 || Number(data?.failed) > 0) {
+                if (!response.ok || result?.status !== 1 || Number(data?.failed) > 0) {
                   throw new Error(
                     `cPanel upload failed for ${relativeDirectory || "."} (HTTP ${response.status}): ${JSON.stringify(result)}`,
                   );
