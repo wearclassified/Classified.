@@ -103,7 +103,7 @@ jobs:
 
                 if (!response.ok || result?.result?.status !== 1 || Number(data?.failed) > 0) {
                   throw new Error(
-                    `cPanel upload failed for ${relativeDirectory || "."}: ${JSON.stringify(result?.result?.errors ?? data?.uploads)}`,
+                    `cPanel upload failed for ${relativeDirectory || "."} (HTTP ${response.status}): ${JSON.stringify(result)}`,
                   );
                 }
 
