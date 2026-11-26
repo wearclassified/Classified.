@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -25,22 +28,52 @@ jobs:
       - name: 🔨 Build static export
         run: npm run build
 
+      - name: 📋 Include .cpanel.yml in build output
+        run: cp .cpanel.yml ./out/.cpanel.yml
+
       - name: 🚀 Push built files to deploy branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           publish_branch: deploy
-          force_orphan: true
+          force_orphan: false
           commit_message: "deploy: ${{ github.event.head_commit.message }}"
 
       - name: ⏳ Wait for deploy branch to be ready
         run: sleep 5
 
       - name: 🔄 Trigger cPanel auto-pull & deploy
+        env:
+          CPANEL_DOMAIN: ${{ secrets.CPANEL_DOMAIN }}
+          CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
+          CPANEL_API_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+          CPANEL_REPO_PATH: ${{ secrets.CPANEL_REPO_PATH }}
         run: |
-          curl -s -o response.json -w "%{http_code}" \
-            -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://${{ secrets.CPANEL_DOMAIN }}:2083/execute/VersionControlDeployment/create?repository_root=${{ secrets.CPANEL_REPO_PATH }}"
-          echo ""
-          cat response.json
+          if [ -z "$CPANEL_DOMAIN" ] || [ -z "$CPANEL_USERNAME" ] || [ -z "$CPANEL_API_TOKEN" ] || [ -z "$CPANEL_REPO_PATH" ]; then
+            echo "::error::Missing one or more cPanel secrets (CPANEL_DOMAIN, CPANEL_USERNAME, CPANEL_API_TOKEN, CPANEL_REPO_PATH)."
+            exit 1
+          fi
+
+          echo "Pulling latest deploy branch on cPanel..."
+          curl -fsS --get \
+            -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_API_TOKEN}" \
+            --data-urlencode "repository_root=${CPANEL_REPO_PATH}" \
+            --data-urlencode "branch=deploy" \
+            "https://${CPANEL_DOMAIN}:2083/execute/VersionControl/update" | tee update.json
+
+          if ! grep -q '"status":1' update.json; then
+            echo "::error::cPanel VersionControl/update failed"
+            exit 1
+          fi
+
+          echo "Deploying HEAD commit on cPanel..."
+          curl -fsS --get \
+            -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_API_TOKEN}" \
+            --data-urlencode "repository_root=${CPANEL_REPO_PATH}" \
+            "https://${CPANEL_DOMAIN}:2083/execute/VersionControlDeployment/create" | tee deploy.json
+
+          if ! grep -q '"status":1' deploy.json; then
+            echo "::error::cPanel VersionControlDeployment/create failed"
+            exit 1
+          fi
