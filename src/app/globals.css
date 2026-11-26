@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --cb-input-bg: #ffffff;
+  --cb-input-text: #18181b;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ededed;
+  --cb-input-bg: #0a0a0a;
+  --cb-input-text: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Logo theme adjustments */
+.logo-green {
+  fill: #06392F;
+}
+
+.logo-white {
+  fill: #000000;
+}
+
+.dark .logo-white {
+  fill: #FFFFFF;
+}
+
+/* Keep matte input styling even after autofill / filled states (Chrome/Edge). */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--cb-input-text);
+  caret-color: var(--cb-input-text);
+  transition: background-color 9999s ease-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px var(--cb-input-bg) inset;
+  box-shadow: 0 0 0px 1000px var(--cb-input-bg) inset;
+}
+
+/* Page & overlay motion (respects prefers-reduced-motion via Tailwind motion-safe:) */
+@keyframes cb-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cb-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cb-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cb-fade-in-out {
+  0%, 100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Staggered blocks inside landing surfaces (use with motion-safe: + delays) */
+@keyframes cb-land-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Browser-preview persisted tweak for Next.js portal positioning. */
+nextjs-portal {
+  left: unset !important;
+  top: unset !important;
+}
+
+/* Keep remember-checkbox visuals available on first paint (no flash). */
+.login-form .remember-box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login-form .remember-box input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.login-form .remember-box svg {
+  overflow: visible;
+}
+
+.login-form .remember-box input:focus-visible ~ svg .remember-path {
+  stroke: #0b8d72;
+}
+
+.login-form .remember-path {
+  fill: none;
+  stroke: #06392f;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease;
+  stroke-dasharray: 0 0 240 9999999;
+  stroke-dashoffset: 1;
+  scale: -1 1;
+  transform-origin: center;
+  animation: cb-remember-hi 0.5s;
+}
+
+.login-form .remember-box input:checked ~ svg .remember-path {
+  stroke-dasharray: 0 262 70 9999999;
+  transition-delay: 0s;
+  scale: 1 1;
+  animation: none;
+}
+
+@keyframes cb-remember-hi {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Hide scrollbars on dropdowns. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Baseline keyboard visibility for interactive controls project-wide. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid color-mix(in srgb, #06392f 45%, transparent);
+  outline-offset: 2px;
+}
+
+/* Login and create-account form fields use a single active border instead of both outline and border. */
+.login-form input:focus-visible,
+.login-form textarea:focus-visible,
+.login-form select:focus-visible,
+.login-form button:focus-visible,
+#create-account-form input:focus-visible,
+#create-account-form textarea:focus-visible,
+#create-account-form select:focus-visible,
+#create-account-form button:focus-visible {
+  outline: none;
+}
