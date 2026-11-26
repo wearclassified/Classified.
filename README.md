@@ -67,14 +67,14 @@ npm run dev
 
 ## Deployment
 
-GitHub Actions builds the static site and deploys it to cPanel over FTPS whenever you push to `main`. The workflow is in `.github/workflows/deploy.yml`.
+GitHub Actions builds the static site and deploys it to cPanel over HTTPS whenever you push to `main`. The workflow is in `.github/workflows/deploy.yml`.
 
-The cPanel FTP account should be restricted to `public_html`. Add these repository secrets in **GitHub > Settings > Secrets and variables > Actions**:
+Add these repository secrets in **GitHub > Settings > Secrets and variables > Actions**:
 
-- `FTP_SERVER` — `ftp.wearclassified.com`
-- `FTP_USERNAME` — `classifieddeploy@wearclassified.com`
-- `FTP_PASSWORD` — the password for that FTP account
+- `CPANEL_DOMAIN` — `comet.frostserver.com`
+- `CPANEL_USERNAME` — your cPanel username
+- `CPANEL_API_TOKEN` — a cPanel API token
 
-Do not put the FTP password in the repository or share it in chat. Once the secrets are set, every push to `main` triggers a build and deployment; check the repository’s **Actions** tab for the result.
+Store the token only as a GitHub Actions secret; do not put it in the repository or share it in chat. cPanel API tokens can access all APIs available to your account, so use one only for deployment and rotate it before it expires. Once the secrets are set, every push to `main` triggers a build and deployment; check the repository’s **Actions** tab for the result.
 
 The project is configured for static export in `next.config.ts`, so it can be served directly by cPanel without a Node.js server.

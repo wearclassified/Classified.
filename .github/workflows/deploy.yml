@@ -28,16 +28,94 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Deploy to cPanel over FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          local-dir: ./out/
-          server-dir: ./
-          exclude: |
-            **/.htaccess
-            **/cgi-bin/**
+      - name: Deploy to cPanel over HTTPS
+        env:
+          CPANEL_DOMAIN: ${{ secrets.CPANEL_DOMAIN }}
+          CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
+          CPANEL_API_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+        run: |
+          node <<'NODE'
+          const { readdir, readFile } = require("node:fs/promises");
+          const path = require("node:path");
+
+          const root = path.resolve("out");
+          const groups = new Map();
+
+          async function collectFiles(directory, relativeDirectory = "") {
+            for (const entry of await readdir(directory, { withFileTypes: true })) {
+              const fullPath = path.join(directory, entry.name);
+              const relativePath = relativeDirectory
+                ? `${relativeDirectory}/${entry.name}`
+                : entry.name;
+
+              if (entry.isDirectory()) {
+                await collectFiles(fullPath, relativePath);
+              } else if (entry.isFile() && entry.name !== ".htaccess") {
+                const files = groups.get(relativeDirectory) ?? [];
+                files.push({ name: entry.name, fullPath });
+                groups.set(relativeDirectory, files);
+              }
+            }
+          }
+
+          async function main() {
+            const { CPANEL_DOMAIN: domain, CPANEL_USERNAME: username, CPANEL_API_TOKEN: token } = process.env;
+            if (!domain || !username || !token) {
+              throw new Error("Missing required cPanel deployment secrets.");
+            }
+
+            await collectFiles(root);
+            if (groups.size === 0) {
+              throw new Error("The static export directory contains no files.");
+            }
+
+            let uploaded = 0;
+            for (const [relativeDirectory, files] of groups) {
+              const destination = path.posix.join(
+                "/home",
+                username,
+                "public_html",
+                relativeDirectory,
+              );
+
+              for (let offset = 0; offset < files.length; offset += 10) {
+                const batch = files.slice(offset, offset + 10);
+                const form = new FormData();
+                for (const [index, file] of batch.entries()) {
+                  form.append(
+                    `file-${index}`,
+                    new Blob([await readFile(file.fullPath)]),
+                    file.name,
+                  );
+                }
+
+                const url = new URL(`https://${domain}:2083/execute/Fileman/upload_files`);
+                url.searchParams.set("dir", destination);
+                url.searchParams.set("overwrite", "1");
+
+                const response = await fetch(url, {
+                  method: "POST",
+                  headers: { Authorization: `cpanel ${username}:${token}` },
+                  body: form,
+                });
+                const result = await response.json();
+                const data = result?.result?.data;
+
+                if (!response.ok || result?.result?.status !== 1 || Number(data?.failed) > 0) {
+                  throw new Error(
+                    `cPanel upload failed for ${relativeDirectory || "."}: ${JSON.stringify(result?.result?.errors ?? data?.uploads)}`,
+                  );
+                }
+
+                uploaded += Number(data?.succeeded ?? 0);
+              }
+            }
+
+            console.log(`Uploaded ${uploaded} static files to cPanel public_html.`);
+          }
+
+          main().catch((error) => {
+            console.error(error.message);
+            process.exitCode = 1;
+          });
+          NODE
