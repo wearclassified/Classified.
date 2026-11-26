@@ -1,6 +1,10 @@
 # Classified.
 
-A modern login-first frontend for Classified, built with Next.js App Router, React, TypeScript, and Tailwind CSS.
+A minimal landing page and login interface for Classified, built with Next.js App Router, React, TypeScript, and Tailwind CSS.
+
+## Sign-in and credentials
+
+There are no demo or default login credentials in this repository. The login and account-creation screens are frontend UI only and are not connected to an authentication service, so there is no working account ID or password to provide yet. Do not add personal passwords or other secrets to this README or the repository.
 
 ## Tech Stack
 
@@ -16,7 +20,7 @@ A modern login-first frontend for Classified, built with Next.js App Router, Rea
 src/
   app/
     layout.tsx          # Root layout, metadata, theme bootstrapping
-    page.tsx            # Redirects to /login
+    page.tsx            # Landing page
     login/page.tsx      # Login route entry
     globals.css         # Global styles and keyframes
   components/
@@ -67,14 +71,14 @@ npm run dev
 
 ## Deployment
 
-GitHub Actions builds the static site and deploys it to cPanel over HTTPS whenever you push to `main`. The workflow is in `.github/workflows/deploy.yml`.
+The production project is connected to this GitHub repository on Vercel. Pushes to `main` trigger a Vercel deployment; check the Vercel project’s Deployments page for its status.
 
-Add these repository secrets in **GitHub > Settings > Secrets and variables > Actions**:
+The legacy GitHub Actions workflow in `.github/workflows/deploy.yml` also deploys the static site to cPanel on pushes to `main`. It remains enabled and requires these repository secrets in **GitHub > Settings > Secrets and variables > Actions**:
 
-- `CPANEL_DOMAIN` — `comet.frostserver.com`
+- `CPANEL_DOMAIN` — cPanel server hostname
 - `CPANEL_USERNAME` — your cPanel username
 - `CPANEL_API_TOKEN` — a cPanel API token
 
-Store the token only as a GitHub Actions secret; do not put it in the repository or share it in chat. cPanel API tokens can access all APIs available to your account, so use one only for deployment and rotate it before it expires. Once the secrets are set, every push to `main` triggers a build and deployment; check the repository’s **Actions** tab for the result.
+Store the token only as a GitHub Actions secret; never put credentials in the repository. cPanel API tokens can access account APIs, so use one only for deployment and rotate it before it expires. Check the repository’s **Actions** tab for the cPanel workflow result.
 
-The project is configured for static export in `next.config.ts`, so it can be served directly by cPanel without a Node.js server.
+The project is configured for static export in `next.config.ts`.
