@@ -67,18 +67,14 @@ npm run dev
 
 ## Deployment
 
-This project includes `vercel.json` and is ready for deployment on Vercel.
+GitHub Actions builds the static site and deploys it to cPanel over FTPS whenever you push to `main`. The workflow is in `.github/workflows/deploy.yml`.
 
-### Deploy with Vercel CLI
+The cPanel FTP account should be restricted to `public_html`. Add these repository secrets in **GitHub > Settings > Secrets and variables > Actions**:
 
-```bash
-npm i -g vercel
-vercel login
-vercel
-```
+- `FTP_SERVER` — `ftp.wearclassified.com`
+- `FTP_USERNAME` — `classifieddeploy@wearclassified.com`
+- `FTP_PASSWORD` — the password for that FTP account
 
-For production:
+Do not put the FTP password in the repository or share it in chat. Once the secrets are set, every push to `main` triggers a build and deployment; check the repository’s **Actions** tab for the result.
 
-```bash
-vercel --prod
-```
+The project is configured for static export in `next.config.ts`, so it can be served directly by cPanel without a Node.js server.
