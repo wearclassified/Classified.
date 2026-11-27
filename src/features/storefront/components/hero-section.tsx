@@ -39,7 +39,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="store-hero relative isolate flex min-h-[72vh] items-center overflow-hidden border-b border-[#292929] sm:min-h-[580px] sm:items-end lg:min-h-[min(78vh,840px)]">
+    <section className="store-hero relative isolate flex min-h-[64vh] items-center overflow-hidden border-b border-[#292929] sm:min-h-[580px] sm:items-end lg:min-h-[min(78vh,840px)]">
       {/* Background Campaign Photography */}
       <Image
         src={heroImage}
