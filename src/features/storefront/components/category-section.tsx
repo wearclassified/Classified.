@@ -31,7 +31,7 @@ export function CategorySection({
               type="button"
               aria-pressed={selected}
               onClick={() => onSelectCategory(selected ? null : category.id)}
-              className={`store-category-card group ${selected ? "store-category-card-active" : ""}`}
+              className={`store-category-card group rounded-lg ${selected ? "store-category-card-active" : ""}`}
             >
               <Image
                 src={category.image}
@@ -39,9 +39,9 @@ export function CategorySection({
                 fill
                 unoptimized
                 sizes="(max-width: 640px) 72vw, (max-width: 1024px) 45vw, 25vw"
-                className="object-cover transition-transform duration-300 motion-reduce:transition-none group-hover:scale-[1.04]"
+                className="object-cover transition-transform duration-300 motion-reduce:transition-none group-hover:scale-[1.04] rounded-lg"
               />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/5" />
+              <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/5 rounded-lg" />
               <span className="relative z-10 flex min-w-0 items-center gap-2">
                 <StoreIcon name={categoryIcons[category.id]} size={18} />
                 <span className="text-[10px] font-semibold uppercase tracking-[0.12em] sm:text-xs">
@@ -50,7 +50,7 @@ export function CategorySection({
                 <StoreIcon name="arrow-right" size={15} className="ml-auto shrink-0" />
               </span>
               {!hasReleasedProduct ? (
-                <span className="absolute right-2 top-2 bg-black/70 px-2 py-1 text-[8px] uppercase tracking-[0.15em] text-white sm:right-3 sm:top-3">
+                <span className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-[8px] uppercase tracking-[0.15em] text-white sm:right-3 sm:top-3">
                   Coming soon
                 </span>
               ) : null}

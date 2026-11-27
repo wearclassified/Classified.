@@ -94,9 +94,9 @@ export function HeroSection() {
     >
       {/* 1. Background Layer: Concrete Architectural Wall */}
       <div
-        className="pointer-events-none absolute -inset-4 sm:-inset-8 scale-[1.04] sm:scale-105 -z-30 transition-transform duration-700 ease-out will-change-transform"
+        className="pointer-events-none absolute -inset-6 sm:-inset-10 -z-30 origin-bottom-right transition-transform duration-700 ease-out will-change-transform"
         style={{
-          transform: `translate3d(${mouseOffset.x * 10}px, ${mouseOffset.y * 6 + scrollY * 0.16}px, 0)`,
+          transform: `translate3d(${mouseOffset.x * 8}px, ${mouseOffset.y * 5 + scrollY * 0.12}px, 0) scale(1.06)`,
         }}
       >
         {/* Mobile Background (< 640px) */}
@@ -126,7 +126,7 @@ export function HeroSection() {
         aria-hidden="true"
         className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[4%] sm:top-[5%] sm:h-[64%] lg:right-[4%] lg:top-[5%] lg:h-[66%] will-change-transform"
         style={{
-          transform: `translate3d(${mouseOffset.x * 18}px, ${mouseOffset.y * 10 + scrollY * 0.26}px, 0)`,
+          transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 14 + scrollY * 0.24}px, 0)`,
         }}
       >
         <svg
@@ -139,9 +139,9 @@ export function HeroSection() {
 
       {/* 3. Foreground Layer: Model Subject (Cutout) */}
       <div
-        className="pointer-events-none absolute -inset-4 sm:-inset-8 scale-[1.04] sm:scale-105 -z-10 transition-transform duration-500 ease-out will-change-transform"
+        className="pointer-events-none absolute -inset-6 sm:-inset-10 -z-10 origin-bottom-right transition-transform duration-700 ease-out will-change-transform"
         style={{
-          transform: `translate3d(${mouseOffset.x * -12}px, ${mouseOffset.y * -8 + scrollY * 0.08}px, 0)`,
+          transform: `translate3d(${mouseOffset.x * 8}px, ${mouseOffset.y * 5 + scrollY * 0.12}px, 0) scale(1.06)`,
         }}
       >
         {/* Mobile Subject (< 640px) */}
@@ -171,7 +171,7 @@ export function HeroSection() {
 
       {/* 5. Typography & Campaign Content Layer */}
       <div
-        className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-[clamp(72px,10vh,96px)] pb-10 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28 will-change-transform"
+        className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-[clamp(100px,13vh,120px)] pb-10 sm:px-8 sm:pb-20 sm:pt-28 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-32 will-change-transform"
         style={{
           transform: `translate3d(0, ${scrollY * 0.18}px, 0)`,
           opacity: Math.max(0, 1 - scrollY / 600),

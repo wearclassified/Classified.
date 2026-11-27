@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
 import { storeCategories } from "../data/catalog";
 import { StoreIcon } from "./store-icon";
+import { TopAnnouncementBar } from "./top-announcement-bar";
 
 type StorefrontHeaderProps = {
   cartCount: number;
@@ -41,86 +42,94 @@ export function StorefrontHeader({
 
   return (
     <>
-      <header
-        className={`store-header sticky top-0 z-40 -mb-[72px] hidden h-[72px] transition-all duration-300 lg:block ${
-          isScrolled
-            ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
-            : "border-b border-transparent bg-transparent"
-        }`}
-      >
-        <div className="mx-auto grid h-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-8 xl:px-16">
-          <Link href="/" aria-label="Classified home" className="w-fit">
-            <BrandLogo className="text-[1.65rem] tracking-tight text-[#f5f5f5]" />
-          </Link>
-
-          <nav aria-label="Main navigation" className="flex h-full items-center gap-8">
-            <div className="relative flex h-full items-center">
-              <button
-                type="button"
-                aria-expanded={shopOpen}
-                aria-haspopup="true"
-                onClick={() => setShopOpen((open) => !open)}
-                className="store-nav-link inline-flex items-center gap-1.5"
-              >
-                Shop
-                <StoreIcon name="chevron-down" size={13} />
-              </button>
-              {shopOpen ? (
-                <div className="absolute left-1/2 top-[calc(100%-1px)] w-56 -translate-x-1/2 border border-[#292929] bg-[#101010] py-2 shadow-2xl">
-                  {storeCategories.map((category) => (
-                    <Link
-                      key={category.id}
-                      href={`/collections/${category.id}/`}
-                      onClick={() => setShopOpen(false)}
-                      className="block px-4 py-3 text-xs uppercase tracking-[0.12em] text-[#c8c8c8] transition-colors hover:bg-white/5 hover:text-white"
-                    >
-                      {category.name}
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-            {navigation.map((item) => (
-              <Link key={item.label} href={item.href} className="store-nav-link">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center justify-self-end gap-1">
-            <HeaderAction label="Search" onClick={onSearch}>
-              <StoreIcon name="search" />
-            </HeaderAction>
-            <Link
-              href="/login/"
-              aria-label="Account — log in"
-              className="store-header-action"
-            >
-              <StoreIcon name="user" />
+      <div className="sticky top-0 z-40 w-full -mb-[90px] lg:-mb-[106px]">
+        <TopAnnouncementBar />
+        <header
+          className={`store-header hidden h-[72px] transition-all duration-300 lg:block ${
+            isScrolled
+              ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
+              : "border-b border-transparent bg-transparent"
+          }`}
+        >
+          <div className="mx-auto grid h-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-8 xl:px-16">
+            <Link href="/" aria-label="Classified home" className="w-fit">
+              <BrandLogo className="text-[1.65rem] tracking-tight text-[#f5f5f5]" />
             </Link>
-            <HeaderAction label={`Shopping bag, ${cartCount} items`} onClick={onCart} count={cartCount}>
-              <StoreIcon name="bag" />
+
+            <nav aria-label="Main navigation" className="flex h-full items-center gap-8">
+              <div className="relative flex h-full items-center">
+                <button
+                  type="button"
+                  aria-expanded={shopOpen}
+                  aria-haspopup="true"
+                  onClick={() => setShopOpen((open) => !open)}
+                  className="store-nav-link inline-flex items-center gap-1.5"
+                >
+                  Shop
+                  <StoreIcon name="chevron-down" size={13} />
+                </button>
+                {shopOpen ? (
+                  <div className="absolute left-1/2 top-[calc(100%-1px)] w-56 -translate-x-1/2 rounded-lg border border-[#292929] bg-[#101010] py-2 shadow-2xl">
+                    {storeCategories.map((category) => (
+                      <Link
+                        key={category.id}
+                        href={`/collections/${category.id}/`}
+                        onClick={() => setShopOpen(false)}
+                        className="block px-4 py-3 text-xs uppercase tracking-[0.12em] text-[#c8c8c8] transition-colors hover:bg-white/5 hover:text-white"
+                      >
+                        {category.name}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+              {navigation.map((item) => (
+                <Link key={item.label} href={item.href} className="store-nav-link">
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center justify-self-end gap-1">
+              <HeaderAction label="Search" onClick={onSearch}>
+                <StoreIcon name="search" />
+              </HeaderAction>
+              <Link
+                href="/login/"
+                aria-label="Account — log in"
+                className="store-header-action"
+              >
+                <StoreIcon name="user" />
+              </Link>
+              <HeaderAction label={`Shopping bag, ${cartCount} items`} onClick={onCart} count={cartCount}>
+                <StoreIcon name="bag" />
+              </HeaderAction>
+            </div>
+          </div>
+        </header>
+
+        <header
+          className={`store-header relative flex h-14 items-center justify-between px-3.5 transition-all duration-300 lg:hidden ${
+            isScrolled
+              ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
+              : "border-b border-transparent bg-transparent"
+          }`}
+        >
+          <div className="w-[36px]" aria-hidden="true" />
+          <Link
+            href="/"
+            aria-label="Classified home"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center"
+          >
+            <BrandLogo className="text-[1.35rem] tracking-tight text-[#f5f5f5]" />
+          </Link>
+          <div className="flex items-center gap-0.5">
+            <HeaderAction label="Search" onClick={onSearch}>
+              <StoreIcon name="search" size={19} />
             </HeaderAction>
           </div>
-        </div>
-      </header>
-
-      <header
-        className={`store-header sticky top-0 z-40 -mb-14 flex h-14 items-center justify-between px-3.5 transition-all duration-300 lg:hidden ${
-          isScrolled
-            ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
-            : "border-b border-transparent bg-transparent"
-        }`}
-      >
-        <Link href="/" aria-label="Classified home" className="w-fit">
-          <BrandLogo className="text-[1.35rem] tracking-tight text-[#f5f5f5]" />
-        </Link>
-        <div className="flex items-center gap-0.5">
-          <HeaderAction label="Search" onClick={onSearch}>
-            <StoreIcon name="search" size={19} />
-          </HeaderAction>
-        </div>
-      </header>
+        </header>
+      </div>
 
       {mobileMenuOpen ? (
         <div className="fixed inset-0 z-[70] lg:hidden">
@@ -163,7 +172,7 @@ export function StorefrontHeader({
             <Link
               href="/login/"
               onClick={closeMobileMenu}
-              className="mt-auto flex min-h-12 items-center justify-center gap-2 border border-[#555] text-xs font-semibold uppercase tracking-[0.12em] text-white"
+              className="mt-auto flex min-h-12 items-center justify-center gap-2 rounded-md border border-[#555] text-xs font-semibold uppercase tracking-[0.12em] text-white"
             >
               <StoreIcon name="user" size={17} />
               Account

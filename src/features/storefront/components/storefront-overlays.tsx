@@ -55,7 +55,7 @@ export function SearchOverlay({
                 onClick={() => onQuickView(product)}
                 className="flex w-full items-center gap-3 py-3 text-left"
               >
-                <span className="relative h-16 w-12 shrink-0 overflow-hidden bg-[#1a1a1a]">
+                <span className="relative h-16 w-12 shrink-0 overflow-hidden rounded-md bg-[#1a1a1a]">
                   <Image src={product.image} alt="" fill unoptimized sizes="48px" className="object-cover" />
                 </span>
                 <span className="min-w-0 flex-1">
@@ -99,7 +99,7 @@ export function CartDrawer({ lines, onClose, onQuantityChange }: CartDrawerProps
           <ul className="mt-5 divide-y divide-[#292929]">
             {lines.map((line) => (
               <li key={`${line.product.id}-${line.size}`} className="flex gap-3 py-4">
-                <span className="relative h-24 w-[72px] shrink-0 overflow-hidden bg-[#1a1a1a]">
+                <span className="relative h-24 w-[72px] shrink-0 overflow-hidden rounded-md bg-[#1a1a1a]">
                   <Image
                     src={line.product.image}
                     alt=""
@@ -172,7 +172,7 @@ export function QuickView({ product, onClose, onAddToCart }: QuickViewProps) {
   return (
     <OverlayFrame title={product.name} onClose={onClose} align="center">
       <div className="grid gap-5 pt-4 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:items-center">
-        <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden bg-[#1a1a1a] sm:max-w-none">
+        <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-lg bg-[#1a1a1a] sm:max-w-none">
           <Image
             src={product.image}
             alt={product.imageAlt}
@@ -312,7 +312,7 @@ function OverlayFrame({
         aria-modal="true"
         aria-label={title}
         className={`relative z-10 flex flex-col overflow-y-auto border border-[#333] bg-[#101010] p-5 shadow-2xl sm:p-7 ${panelSize} ${
-          align === "center" ? "rounded-none sm:rounded-sm" : ""
+          align === "center" ? "rounded-xl" : align === "top" ? "rounded-xl" : "sm:rounded-l-xl"
         }`}
       >
         <div className="flex items-center justify-between gap-4 border-b border-[#333] pb-4">

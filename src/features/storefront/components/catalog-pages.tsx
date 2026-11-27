@@ -41,7 +41,7 @@ export function ShopPage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="border border-[#333] bg-[#121212] px-2.5 py-1.5 text-xs uppercase tracking-wider text-white outline-none focus:border-white"
+            className="rounded-md border border-[#333] bg-[#121212] px-2.5 py-1.5 text-xs uppercase tracking-wider text-white outline-none focus:border-white"
           >
             <option value="featured">Sort: Featured</option>
             <option value="price-asc">Price: Low to High</option>
@@ -72,7 +72,7 @@ export function ShopPage() {
           <CatalogGrid products={products} />
         </div>
       ) : (
-        <div className="border border-[#292929] px-5 py-16 text-center text-sm text-[#aaa]">
+        <div className="rounded-lg border border-[#292929] px-5 py-16 text-center text-sm text-[#aaa]">
           <p>No pieces currently in this category.</p>
         </div>
       )}
@@ -88,7 +88,7 @@ export function CollectionPage({ categoryId }: { categoryId: string }) {
   return (
     <div className="store-container pb-20 pt-10 sm:pb-28 sm:pt-14">
       {/* Category Hero Banner */}
-      <div className="relative overflow-hidden border border-[#262626] bg-[#0d0d0d] p-6 sm:p-10 lg:p-14">
+      <div className="relative overflow-hidden rounded-xl border border-[#262626] bg-[#0d0d0d] p-6 sm:p-10 lg:p-14">
         <div className="relative z-10 max-w-xl">
           <p className="text-[10px] uppercase tracking-[0.25em] text-[#0B6B57]">Collection</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-[-0.04em] text-white sm:text-5xl">
@@ -125,7 +125,7 @@ export function CollectionPage({ categoryId }: { categoryId: string }) {
         {products.length ? (
           <CatalogGrid products={products} />
         ) : (
-          <div className="border border-[#292929] px-5 py-16 text-center text-sm text-[#aaa]">
+          <div className="rounded-lg border border-[#292929] px-5 py-16 text-center text-sm text-[#aaa]">
             <p>This collection is currently being prepared for the next drop.</p>
           </div>
         )}
@@ -159,23 +159,23 @@ export function ProductDetailsPage({ product }: { product: StoreProduct }) {
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Left: Product Imagery */}
         <div className="space-y-4">
-          <div className="relative aspect-[4/5] w-full overflow-hidden border border-[#262626] bg-[#161616]">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-[#262626] bg-[#161616]">
             <Image
               src={product.image}
               alt={product.imageAlt}
               fill
               unoptimized
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover rounded-xl"
               priority
             />
             {product.label ? (
-              <span className="absolute left-4 top-4 bg-[#080808]/90 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-white">
+              <span className="absolute left-4 top-4 rounded-md bg-[#080808]/90 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-white">
                 {product.label}
               </span>
             ) : null}
             {product.comingSoon ? (
-              <span className="absolute left-4 top-4 bg-[#080808]/90 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#aaa]">
+              <span className="absolute left-4 top-4 rounded-md bg-[#080808]/90 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#aaa]">
                 Coming Soon
               </span>
             ) : null}
@@ -205,21 +205,21 @@ export function ProductDetailsPage({ product }: { product: StoreProduct }) {
           {/* Key Specs Pills */}
           <div className="mt-5 flex flex-wrap gap-2 text-[10px] font-mono uppercase text-[#bbb]">
             {product.gsm && (
-              <span className="border border-[#333] bg-[#121212] px-2.5 py-1">
+              <span className="rounded-md border border-[#333] bg-[#121212] px-2.5 py-1">
                 {product.gsm} GSM
               </span>
             )}
             {product.composition && (
-              <span className="border border-[#333] bg-[#121212] px-2.5 py-1">
+              <span className="rounded-md border border-[#333] bg-[#121212] px-2.5 py-1">
                 {product.composition}
               </span>
             )}
             {product.fit && (
-              <span className="border border-[#333] bg-[#121212] px-2.5 py-1">
+              <span className="rounded-md border border-[#333] bg-[#121212] px-2.5 py-1">
                 {product.fit}
               </span>
             )}
-            <span className="border border-[#333] bg-[#121212] px-2.5 py-1">
+            <span className="rounded-md border border-[#333] bg-[#121212] px-2.5 py-1">
               Made in Bangladesh
             </span>
           </div>

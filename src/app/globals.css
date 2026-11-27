@@ -217,6 +217,7 @@ nextjs-portal {
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
   color: #dedede;
   transition: color 160ms ease, background-color 160ms ease;
 }
@@ -237,6 +238,7 @@ nextjs-portal {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  border-radius: 6px;
   transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
@@ -293,6 +295,7 @@ nextjs-portal {
   align-items: flex-end;
   overflow: hidden;
   padding: 0.75rem;
+  border-radius: 8px;
   color: #f5f5f5;
   text-align: left;
   scroll-snap-align: start;
@@ -302,6 +305,12 @@ nextjs-portal {
 .store-category-card-active {
   outline: 1px solid #f5f5f5;
   outline-offset: -2px;
+  border-radius: 8px;
+}
+
+.store-product-image {
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .store-product-image img,
@@ -309,6 +318,11 @@ nextjs-portal {
 .store-hero img,
 .store-manifesto img {
   color: transparent;
+}
+
+.store-category-card img,
+.store-product-image img {
+  border-radius: 8px;
 }
 
 .store-icon-action,
@@ -321,12 +335,14 @@ nextjs-portal {
   background: rgb(8 8 8 / 70%);
   color: #fff;
   backdrop-filter: blur(8px);
+  border-radius: 6px;
 }
 
 .store-product-quickview {
   min-height: 36px;
   min-width: 36px;
   opacity: 0;
+  border-radius: 6px;
   transition: opacity 160ms ease;
 }
 
@@ -362,6 +378,7 @@ nextjs-portal {
   justify-content: center;
   border: 1px solid #444;
   color: #ddd;
+  border-radius: 4px;
 }
 
 .store-quantity-action:hover {
@@ -378,6 +395,7 @@ nextjs-portal {
   border: 1px solid #444;
   color: #ccc;
   font-size: 10px;
+  border-radius: 6px;
   transition: border-color 160ms ease, color 160ms ease;
 }
 
@@ -385,6 +403,13 @@ nextjs-portal {
 .store-size-option-active {
   border-color: #f5f5f5;
   color: #fff;
+}
+
+/* Project-wide slightly rounded controls and cards */
+.storefront-shell input:not([type="checkbox"]):not([type="radio"]),
+.storefront-shell select,
+.storefront-shell textarea {
+  border-radius: 6px;
 }
 
 @keyframes store-hero-reveal {
@@ -491,6 +516,52 @@ nextjs-portal {
 
 .hero-animate-ghost {
   animation: hero-ghost-land 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+/* Top Announcement Bar Motion */
+@keyframes top-announcement-land {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes announcement-slide-down-in {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes announcement-slide-down-out {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.top-bar-land {
+  animation: top-announcement-land 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.announcement-in {
+  animation: announcement-slide-down-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.announcement-out {
+  animation: announcement-slide-down-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (min-width: 640px) {

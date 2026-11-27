@@ -27,8 +27,12 @@ export const metadata: Metadata = {
   },
   description: "Classified. — find, list, and connect with confidence.",
   icons: {
-    icon: "/icon.svg",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
     shortcut: "/icon.svg",
+    apple: "/apple-icon.png",
   },
 };
 

@@ -49,23 +49,23 @@ export function FeaturedCollection({
             const isWishlisted = wishlist.has(product.id);
             return (
               <article key={product.id} className="group min-w-0">
-                <div className="store-product-image relative aspect-[4/5] overflow-hidden bg-[#161616]">
+                <div className="store-product-image relative aspect-[4/5] overflow-hidden rounded-lg bg-[#161616]">
                   <Image
                     src={product.image}
                     alt={product.imageAlt}
                     fill
                     unoptimized
                     sizes="(max-width: 639px) 48vw, (max-width: 1023px) 32vw, 25vw"
-                    className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.035]"
+                    className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.035] rounded-lg"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent rounded-lg" />
                   {product.label ? (
-                    <span className="absolute left-2.5 top-2.5 bg-[#f5f5f5] px-2 py-1 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#080808] sm:left-3 sm:top-3">
+                    <span className="absolute left-2.5 top-2.5 rounded-sm bg-[#f5f5f5] px-2 py-1 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#080808] sm:left-3 sm:top-3">
                       {product.label}
                     </span>
                   ) : null}
                   {product.comingSoon ? (
-                    <span className="absolute bottom-2.5 left-2.5 border border-white/60 bg-black/50 px-2 py-1 text-[8px] uppercase tracking-[0.13em] text-white sm:bottom-3 sm:left-3">
+                    <span className="absolute bottom-2.5 left-2.5 rounded-sm border border-white/60 bg-black/50 px-2 py-1 text-[8px] uppercase tracking-[0.13em] text-white sm:bottom-3 sm:left-3">
                       Coming soon
                     </span>
                   ) : null}
@@ -74,7 +74,7 @@ export function FeaturedCollection({
                     aria-label={`${isWishlisted ? "Remove" : "Add"} ${product.name} ${isWishlisted ? "from" : "to"} wishlist`}
                     aria-pressed={isWishlisted}
                     onClick={() => onWishlistToggle(product.id)}
-                    className={`store-icon-action absolute right-2 top-2 sm:right-3 sm:top-3 ${isWishlisted ? "text-white" : "text-white/90"}`}
+                    className={`store-icon-action absolute right-2 top-2 rounded-md sm:right-3 sm:top-3 ${isWishlisted ? "text-white" : "text-white/90"}`}
                   >
                     <StoreIcon name="heart" size={19} className={isWishlisted ? "fill-white" : ""} />
                   </button>
@@ -82,7 +82,7 @@ export function FeaturedCollection({
                     type="button"
                     aria-label={`Quick view ${product.name}`}
                     onClick={() => onQuickView(product)}
-                    className="store-product-quickview absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3"
+                    className="store-product-quickview absolute bottom-2.5 right-2.5 rounded-md sm:bottom-3 sm:right-3"
                   >
                     <StoreIcon name="arrow-right" size={17} />
                   </button>

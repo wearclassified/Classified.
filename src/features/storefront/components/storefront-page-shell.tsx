@@ -99,7 +99,7 @@ export function StorefrontPageShell({ children }: { children: ReactNode }) {
             setSearchOpen(true);
           }}
         />
-        <main className="min-h-[65vh] pt-14 lg:pt-[72px]">{children}</main>
+        <main className="min-h-[65vh] pt-[90px] lg:pt-[106px]">{children}</main>
         <StorefrontFooter hasMobileBottomNav={true} />
         <MobileBottomNav
           cartCount={cartCount}

@@ -14,7 +14,7 @@ export function MembershipSection() {
 
   return (
     <section id="membership" className="store-container py-10 sm:py-14">
-      <div className="border border-[#333] bg-[#101010] px-5 py-7 sm:px-8 sm:py-9 lg:flex lg:items-center lg:justify-between lg:gap-10 lg:px-12">
+      <div className="rounded-xl border border-[#333] bg-[#101010] px-5 py-7 sm:px-8 sm:py-9 lg:flex lg:items-center lg:justify-between lg:gap-10 lg:px-12">
         <div className="max-w-xl">
           <p className="text-[9px] font-medium uppercase tracking-[0.25em] text-[#aaa]">Classified. membership</p>
           <h2 className="mt-3 text-xl font-semibold uppercase tracking-[0.1em] text-[#f5f5f5] sm:text-2xl">
@@ -37,9 +37,9 @@ export function MembershipSection() {
               required
               placeholder="Your email address"
               onChange={() => setSubmitted(false)}
-              className="min-h-12 min-w-0 flex-1 border border-[#444] bg-[#080808] px-4 text-sm text-white placeholder:text-[#777] focus:border-white focus:outline-none"
+              className="min-h-12 min-w-0 flex-1 rounded-md border border-[#444] bg-[#080808] px-4 text-sm text-white placeholder:text-[#777] focus:border-white focus:outline-none"
             />
-            <button type="submit" className="store-button-primary min-h-12 justify-center">
+            <button type="submit" className="store-button-primary min-h-12 justify-center rounded-md">
               Join the list
               <StoreIcon name="arrow-right" size={17} />
             </button>
