@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { BdFlagIcon, CloseIcon, UsFlagIcon } from "@/components/icons";
 import { SettingsModal } from "@/components/settings-modal";
 
@@ -126,6 +127,7 @@ function LanguageModal({ open, onClose }: LanguageModalProps) {
 }
 
 export function SiteFooter() {
+  const pathname = usePathname();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsModalKey, setSettingsModalKey] = useState(0);
   const [languageModalOpen, setLanguageModalOpen] = useState(false);
@@ -134,6 +136,8 @@ export function SiteFooter() {
     setSettingsModalKey((k) => k + 1);
     setSettingsOpen(true);
   };
+
+  if (pathname === "/") return null;
 
   return (
     <>
