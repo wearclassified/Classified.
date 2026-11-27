@@ -87,14 +87,14 @@ export function HeroSection() {
           priority
           unoptimized
           sizes="100vw"
-          className="hero-animate-bg hidden object-cover object-right-bottom sm:block"
+          className="hero-animate-bg hidden object-cover object-right sm:block"
         />
       </div>
 
       {/* 2. Middle Layer: Ghosted Giant C Brand Mark (strictly BEHIND subject) */}
       <div
         aria-hidden="true"
-        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[11%] sm:top-[10%] sm:h-[64%] lg:right-[13%] lg:top-[12%] lg:h-[68%] will-change-transform"
+        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[10%] sm:top-[12%] sm:h-[64%] lg:right-[11%] lg:top-[12%] lg:h-[66%] will-change-transform"
         style={{
           transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px, 0)`,
         }}
@@ -132,7 +132,7 @@ export function HeroSection() {
           priority
           unoptimized
           sizes="100vw"
-          className="hero-animate-subject hidden object-cover object-right-bottom sm:block"
+          className="hero-animate-subject hidden object-cover object-right sm:block"
         />
       </div>
 
