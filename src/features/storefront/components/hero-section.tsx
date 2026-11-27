@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { StoreIcon } from "./store-icon";
 import {
   defaultHeroCampaign,
@@ -123,26 +122,6 @@ export function HeroSection() {
               <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#e0e0e0] sm:text-[11.5px]">
                 {campaign.durationDate}
               </span>
-            </div>
-          )}
-
-          {/* Action Buttons */}
-          {campaign.showButtons && (
-            <div className="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-7 sm:gap-3">
-              <a
-                href={campaign.ctaLink}
-                className="inline-flex h-10 items-center gap-2 border border-white bg-white px-4 text-[9.5px] font-bold uppercase tracking-[0.14em] text-black transition-all hover:bg-white/90 active:scale-[0.98] sm:h-12 sm:px-6 sm:text-[10.5px]"
-              >
-                <span>{campaign.ctaText}</span>
-                <StoreIcon name="arrow-right" size={14} />
-              </a>
-              <Link
-                href={campaign.secondaryLink}
-                className="inline-flex h-10 items-center gap-2 border border-white/30 bg-black/40 px-4 text-[9.5px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/10 active:scale-[0.98] sm:h-12 sm:px-6 sm:text-[10.5px]"
-              >
-                <span>{campaign.secondaryText}</span>
-                <StoreIcon name="lock" size={13} />
-              </Link>
             </div>
           )}
         </div>

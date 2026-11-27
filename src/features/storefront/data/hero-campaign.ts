@@ -31,7 +31,7 @@ export const defaultHeroCampaign: HeroCampaignData = {
   secondaryLink: "/login/",
   showDiscount: true,
   showDuration: true,
-  showButtons: true,
+  showButtons: false,
 };
 
 export const CAMPAIGN_STORAGE_KEY = "classified_hero_campaign_v2";

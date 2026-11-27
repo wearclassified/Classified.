@@ -226,20 +226,6 @@ export default function FounderDashboardPage() {
                     </span>
                   </div>
                 )}
-
-                {/* Action Buttons */}
-                {campaign.showButtons && (
-                  <div className="mt-3 flex items-center gap-2">
-                    <span className="inline-flex h-7 items-center gap-1 bg-white px-2.5 text-[8px] font-bold uppercase tracking-wider text-black">
-                      <span>{campaign.ctaText}</span>
-                      <StoreIcon name="arrow-right" size={10} />
-                    </span>
-                    <span className="inline-flex h-7 items-center gap-1 border border-white/30 bg-black/40 px-2.5 text-[8px] font-semibold uppercase tracking-wider text-white">
-                      <span>{campaign.secondaryText}</span>
-                      <StoreIcon name="lock" size={10} />
-                    </span>
-                  </div>
-                )}
               </div>
             </div>
 
