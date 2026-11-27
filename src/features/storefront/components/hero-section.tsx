@@ -19,6 +19,24 @@ export function HeroSection() {
 
   useEffect(() => {
     setCampaign(getStoredHeroCampaign());
+
+    // Secret founder shortcut: Ctrl+Shift+F or ?founder=1 in URL
+    const handleKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "f") {
+        e.preventDefault();
+        setIsEditorOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("founder") === "1" || params.get("edit") === "1") {
+        setIsEditorOpen(true);
+      }
+    }
+
+    return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
   return (
@@ -53,23 +71,12 @@ export function HeroSection() {
       {/* Content Container */}
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 pb-8 pt-20 sm:px-8 sm:pb-16 sm:pt-24 lg:px-16 lg:pb-[clamp(68px,11vh,140px)] lg:pt-28">
         <div className="max-w-[340px] xs:max-w-[380px] sm:max-w-[560px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
-          {/* Eyebrow: Badge + Horizontal Rule + Founder Edit Badge */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Eyebrow: Badge + Horizontal Rule */}
+          <div className="flex items-center gap-3">
             <span className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-white sm:text-[13px] md:text-[14px]">
               {campaign.badge}
             </span>
-            <span className="h-[1.5px] w-10 bg-white/80 sm:w-16 md:w-20" aria-hidden="true" />
-
-            {/* Founder Controls Badge */}
-            <button
-              type="button"
-              onClick={() => setIsEditorOpen(true)}
-              className="group ml-auto inline-flex items-center gap-1.5 rounded-full border border-[#03bf93]/40 bg-black/60 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-[#03bf93] backdrop-blur-md transition-all hover:border-[#03bf93] hover:bg-[#03bf93]/10 hover:text-white sm:text-[9.5px]"
-              title="Founder Campaign Dashboard (Visual Editor)"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#03bf93] animate-pulse" />
-              <span>Founder Edit</span>
-            </button>
+            <span className="h-[1.5px] w-12 bg-white/80 sm:w-16 md:w-20" aria-hidden="true" />
           </div>
 
           {/* Subtitle */}
