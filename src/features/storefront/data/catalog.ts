@@ -20,30 +20,26 @@ export const storeCategories: {
   {
     id: "tees",
     name: "Oversized Tees",
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Monochrome editorial photograph of a premium T-shirt",
+    image: "/images/category-tees.webp",
+    imageAlt: "Classified oversized graphic tee editorial look",
   },
   {
     id: "hoodies",
     name: "Hoodies",
-    image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Model wearing a dark streetwear hoodie",
+    image: "/images/category-hoodies.webp",
+    imageAlt: "Classified signature hoodie streetwear editorial look",
   },
   {
     id: "cargo",
     name: "Cargo",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Editorial streetwear look with relaxed silhouette",
+    image: "/images/category-cargo.webp",
+    imageAlt: "Classified tactical utility cargo pants styling",
   },
   {
     id: "accessories",
     name: "Accessories",
-    image:
-      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Minimal sunglasses photographed in a dark editorial style",
+    image: "/images/category-accessories.webp",
+    imageAlt: "Classified custom acrylic streetwear accessories and charms",
   },
 ];
 
@@ -53,9 +49,8 @@ export const storeProducts: StoreProduct[] = [
     name: "Core Oversized Tee",
     category: "tees",
     price: 2490,
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&h=1125&q=80",
-    imageAlt: "Core oversized T-shirt in a monochrome product editorial",
+    image: "/images/product-core-oversized-tee.webp",
+    imageAlt: "Classified Core Oversized Tee in heavyweight black cotton featuring Greek statue back print",
     label: "New",
   },
   {
@@ -63,27 +58,24 @@ export const storeProducts: StoreProduct[] = [
     name: "Signature Hoodie",
     category: "hoodies",
     price: 4490,
-    image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&h=1125&q=80",
-    imageAlt: "Signature dark hoodie in a streetwear editorial",
+    image: "/images/product-signature-hoodie.webp",
+    imageAlt: "Classified Signature Hoodie in heavy black fleece with classical Greek sculpture graphic",
     label: "New",
   },
   {
     id: "utility-cargo-pant",
     name: "Utility Cargo Pant",
     category: "cargo",
-    image:
-      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&h=1125&q=80",
-    imageAlt: "Utility-inspired fashion pieces in a neutral palette",
+    image: "/images/product-utility-cargo-pant.webp",
+    imageAlt: "Classified Utility Cargo Pant in relaxed heavyweight cotton with 3D flap pockets",
     comingSoon: true,
   },
   {
     id: "classified-beanie",
     name: "Classified Beanie",
     category: "accessories",
-    image:
-      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&h=1125&q=80",
-    imageAlt: "Close-up of a minimal dark fashion accessory",
+    image: "/images/product-classified-beanie.webp",
+    imageAlt: "Classified Streetwear Tag & Acrylic Accessory Charm",
     comingSoon: true,
   },
 ];

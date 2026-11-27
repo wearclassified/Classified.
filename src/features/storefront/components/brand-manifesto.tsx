@@ -1,18 +1,17 @@
 import Image from "next/image";
 
-const manifestoImage =
-  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=75";
+const manifestoImage = "/images/manifesto-statue.webp";
 
 export function BrandManifesto() {
   return (
     <section id="manifesto" className="store-manifesto relative isolate overflow-hidden border-y border-[#292929]">
       <Image
         src={manifestoImage}
-        alt="Editorial portrait against an urban architectural backdrop"
+        alt="Classified. statue artwork with sunglasses in dramatic editorial lighting"
         fill
         unoptimized
         sizes="100vw"
-        className="-z-20 object-cover object-[center_45%]"
+        className="-z-20 object-cover object-[center_center]"
       />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#080808]/75" />
       <div className="mx-auto flex min-h-[220px] max-w-[1600px] flex-col items-center justify-center px-5 py-12 text-center sm:min-h-[260px] sm:py-16">

@@ -2,20 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { StoreIcon } from "./store-icon";
 
-const heroImage =
-  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2000&q=85";
+const heroImage = "/images/hero-campaign.webp";
 
 export function HeroSection() {
   return (
     <section className="store-hero relative isolate flex min-h-[480px] items-end overflow-hidden border-b border-[#292929] sm:min-h-[560px] lg:min-h-[min(72vh,780px)]">
       <Image
         src={heroImage}
-        alt="Fashion model in a sculptural dark streetwear look"
+        alt="Classified. campaign photoshoot featuring signature hoodie and oversized tee"
         fill
         priority
         unoptimized
         sizes="100vw"
-        className="store-hero-image -z-20 object-cover object-[62%_42%] sm:object-[62%_38%]"
+        className="store-hero-image -z-20 object-cover object-[center_center] sm:object-[center_35%]"
       />
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
       <div className="mx-auto w-full max-w-[1600px] px-5 pb-12 pt-16 sm:px-8 sm:pb-16 lg:px-16 lg:pb-[clamp(72px,12vh,150px)]">
@@ -44,7 +43,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      <span className="sr-only">Temporary editorial photography placeholder; replace with Classified. campaign photography.</span>
     </section>
   );
 }
