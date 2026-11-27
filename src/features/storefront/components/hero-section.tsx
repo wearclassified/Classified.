@@ -133,18 +133,18 @@ export function HeroSection() {
 
           {/* 50% OFF Giant Lockup */}
           {campaign.showDiscount && (
-            <div className="mt-2.5 flex items-start gap-1 select-none leading-none sm:mt-3 sm:gap-2">
+            <div className="mt-2.5 flex items-start gap-1.5 select-none leading-none sm:mt-3 sm:gap-2">
               {/* Giant Discount Number */}
               <span className="text-[clamp(5rem,20vw,8.6rem)] font-black italic tracking-[-0.045em] text-[#03bf93] leading-[0.84] sm:text-[clamp(4.2rem,12.8vw,8.6rem)]">
                 {campaign.discountNumber}
               </span>
 
               {/* Stacked % and OFF */}
-              <div className="flex flex-col justify-between py-1 leading-none self-stretch pb-1">
-                <span className="text-[clamp(2rem,5.5vw,3.2rem)] font-black italic text-[#03bf93] leading-none sm:text-[clamp(1.7rem,4.8vw,3.2rem)]">
+              <div className="flex flex-col justify-between self-stretch pb-1 leading-none">
+                <span className="text-[clamp(3.2rem,11vw,5.2rem)] font-black italic text-[#03bf93] leading-[0.82] sm:text-[clamp(2.6rem,8vw,4.6rem)]">
                   {campaign.discountSymbol}
                 </span>
-                <span className="text-[clamp(1.8rem,5vw,2.8rem)] font-black italic tracking-tight text-white leading-none sm:text-[clamp(1.5rem,4.2vw,2.8rem)]">
+                <span className="text-[clamp(1.6rem,5vw,2.6rem)] font-black italic tracking-tight text-white leading-none sm:text-[clamp(1.4rem,4.2vw,2.4rem)]">
                   {campaign.discountUnit}
                 </span>
               </div>
