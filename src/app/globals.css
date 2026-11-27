@@ -396,38 +396,101 @@ nextjs-portal {
   }
 }
 
-@keyframes hero-fade-up {
-  from {
+@keyframes hero-bg-land {
+  0% {
     opacity: 0;
-    transform: translateY(16px);
+    transform: scale(1.08);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes hero-scale-reveal {
-  from {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  to {
+  100% {
     opacity: 1;
     transform: scale(1);
   }
 }
 
+@keyframes hero-subject-land {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hero-ghost-land {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-discount-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes hero-bar-grow {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes hero-line-draw {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    opacity: 0.8;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
 .hero-animate-bg {
-  animation: hero-scale-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-bg-land 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero-animate-subject {
-  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  animation: hero-subject-land 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
 }
 
 .hero-animate-ghost {
-  animation: hero-fade-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  animation: hero-ghost-land 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
 }
 
 @media (min-width: 640px) {
