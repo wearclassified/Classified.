@@ -245,9 +245,24 @@ export function FounderCampaignDrawer({
           </div>
 
           {/* CTA Buttons */}
-          <div className="space-y-3 pt-1">
+          <div className="rounded border border-zinc-800/80 bg-zinc-900/50 p-3 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-300">
+                Action Buttons
+              </span>
+              <label className="flex cursor-pointer items-center gap-1.5 text-[10px] text-zinc-400">
+                <input
+                  type="checkbox"
+                  checked={draft.showButtons}
+                  onChange={(e) => handleChange("showButtons", e.target.checked)}
+                  className="rounded border-zinc-700 bg-zinc-800 accent-[#03bf93]"
+                />
+                <span>Visible</span>
+              </label>
+            </div>
+
             <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-300">
+              <label className="block text-[9px] uppercase tracking-wider text-zinc-400">
                 Primary Button Label &amp; Link
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -269,7 +284,7 @@ export function FounderCampaignDrawer({
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-300">
+              <label className="block text-[9px] uppercase tracking-wider text-zinc-400">
                 Secondary Button Label &amp; Link
               </label>
               <div className="grid grid-cols-2 gap-2">
