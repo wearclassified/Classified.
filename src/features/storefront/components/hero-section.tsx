@@ -66,7 +66,7 @@ export function HeroSection() {
       {/* Ghosted Giant C Brand Mark on Concrete Wall */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[-3%] top-[-1%] -z-15 h-[55%] w-auto select-none opacity-50 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
+        className="pointer-events-none absolute right-[11%] top-[1%] -z-15 h-[55%] w-auto select-none opacity-45 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
       >
         <svg
           viewBox="0 0 33.5 67"
@@ -80,7 +80,7 @@ export function HeroSection() {
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-[13vh] pb-10 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-7 pb-10 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28">
         <div className="max-w-[300px] xs:max-w-[340px] sm:max-w-[560px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
           {/* Eyebrow: Badge + Horizontal Rule */}
           <div className="flex items-center gap-3">
