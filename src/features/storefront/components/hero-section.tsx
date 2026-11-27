@@ -11,6 +11,7 @@ import {
 import { FounderCampaignDrawer } from "./founder-campaign-drawer";
 
 const heroImage = "/images/hero-campaign.webp";
+const heroImageMobile = "/images/hero-campaign-mobile.webp";
 
 export function HeroSection() {
   const [campaign, setCampaign] = useState<HeroCampaignData>(defaultHeroCampaign);
@@ -40,7 +41,18 @@ export function HeroSection() {
 
   return (
     <section className="store-hero relative isolate flex min-h-[64vh] items-center overflow-hidden border-b border-[#292929] sm:min-h-[580px] sm:items-end lg:min-h-[min(78vh,840px)]">
-      {/* Background Campaign Photography */}
+      {/* Mobile Hero Image (portrait, < 640px only) */}
+      <Image
+        src={heroImageMobile}
+        alt="Classified. campaign featuring signature hoodie and sunglasses"
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="store-hero-image -z-20 object-cover object-[center_18%] transition-transform duration-500 ease-out sm:hidden"
+      />
+
+      {/* Desktop Hero Image (landscape, 640px+) */}
       <Image
         src={heroImage}
         alt="Classified. campaign featuring signature hoodie and sunglasses"
@@ -48,7 +60,7 @@ export function HeroSection() {
         priority
         unoptimized
         sizes="100vw"
-        className="store-hero-image -z-20 scale-[1.72] origin-[62%_28%] object-cover object-[62%_28%] sm:scale-100 sm:origin-center sm:object-[68%_center] transition-transform duration-500 ease-out"
+        className="store-hero-image -z-20 hidden object-cover object-[68%_center] transition-transform duration-500 ease-out sm:block"
       />
 
       {/* Ghosted Giant C Brand Mark on Concrete Wall */}
