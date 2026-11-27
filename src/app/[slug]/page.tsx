@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ContactPage, EditorialPage } from "@/features/storefront/components/editorial-page";
+import { EditorialPage } from "@/features/storefront/components/editorial-page";
 import { StorefrontPageShell } from "@/features/storefront/components/storefront-page-shell";
 
 const pageSlugs = [
@@ -48,7 +48,7 @@ export default async function InformationRoute({
 
   return (
     <StorefrontPageShell>
-      {slug === "contact" ? <ContactPage /> : <EditorialPage slug={slug} />}
+      <EditorialPage slug={slug} />
     </StorefrontPageShell>
   );
 }
