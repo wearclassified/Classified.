@@ -97,9 +97,6 @@ export function StorefrontHeader({
           <HeaderAction label="Search" onClick={onSearch}>
             <StoreIcon name="search" size={19} />
           </HeaderAction>
-          <HeaderAction label={`Shopping bag, ${cartCount} items`} onClick={onCart} count={cartCount}>
-            <StoreIcon name="bag" size={19} />
-          </HeaderAction>
         </div>
       </header>
 

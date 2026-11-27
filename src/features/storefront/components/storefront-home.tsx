@@ -143,7 +143,6 @@ export function StorefrontHome() {
         wishlistCount={wishlist.size}
         showWishlistOnly={showWishlistOnly}
         cartCount={cartCount}
-        onSearch={openSearch}
         onWishlist={showSavedPieces}
         onCart={openCart}
       />

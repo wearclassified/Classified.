@@ -15,6 +15,7 @@ import {
 } from "./storefront-overlays";
 import { StorefrontFooter } from "./storefront-footer";
 import { StorefrontHeader } from "./storefront-header";
+import { MobileBottomNav } from "./mobile-bottom-nav";
 import { storeProducts, type StoreProduct } from "../data/catalog";
 
 type StorefrontActions = {
@@ -99,7 +100,17 @@ export function StorefrontPageShell({ children }: { children: ReactNode }) {
           }}
         />
         <main className="min-h-[65vh]">{children}</main>
-        <StorefrontFooter hasMobileBottomNav={false} />
+        <StorefrontFooter hasMobileBottomNav={true} />
+        <MobileBottomNav
+          cartCount={cartCount}
+          onWishlist={() => {
+            window.location.href = "/#featured";
+          }}
+          onCart={() => {
+            setSearchOpen(false);
+            setCartOpen(true);
+          }}
+        />
         <p className="sr-only" aria-live="polite" aria-atomic="true">
           {announcement}
         </p>
