@@ -48,7 +48,7 @@ export function HeroSection() {
         priority
         unoptimized
         sizes="100vw"
-        className="store-hero-image -z-20 scale-[1.42] origin-[84%_36%] object-cover object-[86%_center] sm:scale-100 sm:origin-center sm:object-[68%_center] transition-transform duration-500 ease-out"
+        className="store-hero-image -z-20 scale-[1.32] origin-[67%_38%] object-cover object-[60%_center] sm:scale-100 sm:origin-center sm:object-[68%_center] transition-transform duration-500 ease-out"
       />
 
       {/* Ghosted Giant C Brand Mark on Concrete Wall */}
