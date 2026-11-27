@@ -9,12 +9,12 @@ export function HeroSection() {
     <section className="store-hero relative isolate flex min-h-[300px] items-end overflow-hidden border-b border-[#292929] sm:min-h-[440px] lg:min-h-[min(65vh,720px)]">
       <Image
         src={heroImage}
-        alt="Classified. campaign photoshoot featuring signature hoodie and oversized tee"
+        alt="Classified. campaign featuring signature hoodie and sunglasses"
         fill
         priority
         unoptimized
         sizes="100vw"
-        className="store-hero-image -z-20 object-cover object-[center_30%] sm:object-[center_35%]"
+        className="store-hero-image -z-20 object-cover object-[70%_center] sm:object-[65%_center]"
       />
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
       <div className="mx-auto w-full max-w-[1600px] px-4 pb-8 pt-10 sm:px-8 sm:pb-16 sm:pt-16 lg:px-16 lg:pb-[clamp(72px,12vh,150px)]">

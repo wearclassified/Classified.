@@ -48,7 +48,7 @@ export function AboutPage() {
       {/* Hero Visual */}
       <div className="relative mt-12 aspect-[16/9] w-full overflow-hidden border border-[#262626] sm:mt-16 lg:aspect-[21/9]">
         <Image
-          src="/images/hero-campaign.webp"
+          src="/images/campaign-dhaka.webp"
           alt="Classified campaign shoot in Dhaka"
           fill
           unoptimized
