@@ -19,7 +19,7 @@ export default function MembershipRoute() {
     <StorefrontPageShell>
       <div className="store-container pb-20 pt-10 sm:pb-28 sm:pt-16">
         {/* Hero Banner */}
-        <div className="relative overflow-hidden border border-[#262626] bg-[#0c0c0c] px-6 py-12 sm:px-12 sm:py-20">
+        <div className="relative overflow-hidden rounded-xl border border-[#262626] bg-[#0c0c0c] px-6 py-12 sm:px-12 sm:py-20">
           <div className="relative z-10 max-w-2xl">
             <p className="text-[10px] uppercase tracking-[0.3em] text-[#0B6B57]">The Private Allocation</p>
             <h1 className="mt-4 text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.05em] text-[#f5f5f5]">
@@ -34,7 +34,7 @@ export default function MembershipRoute() {
             {/* Signup Form */}
             <div className="mt-8 max-w-md">
               {joined ? (
-                <div className="border border-[#0B6B57]/50 bg-[#0B6B57]/10 p-5">
+                <div className="rounded-lg border border-[#0B6B57]/50 bg-[#0B6B57]/10 p-5">
                   <div className="flex items-center gap-3 text-white">
                     <StoreIcon name="check" size={20} className="text-[#0B6B57]" />
                     <p className="text-xs font-semibold uppercase tracking-wider">
@@ -53,7 +53,7 @@ export default function MembershipRoute() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your personal email"
-                    className="min-h-12 flex-1 border border-[#333] bg-[#141414] px-4 text-xs text-white placeholder:text-[#666] outline-none focus:border-white"
+                    className="min-h-12 flex-1 rounded-md border border-[#333] bg-[#141414] px-4 text-xs text-white placeholder:text-[#666] outline-none focus:border-white"
                   />
                   <button type="submit" className="store-button-primary min-h-12 justify-center">
                     Request Access
@@ -81,7 +81,7 @@ export default function MembershipRoute() {
           </h2>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="border border-[#262626] bg-[#0d0d0d] p-6">
+            <div className="rounded-lg border border-[#262626] bg-[#0d0d0d] p-6">
               <span className="font-mono text-xs text-[#0B6B57]">01 / PRIORITY</span>
               <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-white">
                 15-Min Early Access
@@ -91,7 +91,7 @@ export default function MembershipRoute() {
               </p>
             </div>
 
-            <div className="border border-[#262626] bg-[#0d0d0d] p-6">
+            <div className="rounded-lg border border-[#262626] bg-[#0d0d0d] p-6">
               <span className="font-mono text-xs text-[#0B6B57]">02 / ARCHIVE</span>
               <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-white">
                 Deadstock &amp; Vault
@@ -101,7 +101,7 @@ export default function MembershipRoute() {
               </p>
             </div>
 
-            <div className="border border-[#262626] bg-[#0d0d0d] p-6">
+            <div className="rounded-lg border border-[#262626] bg-[#0d0d0d] p-6">
               <span className="font-mono text-xs text-[#0B6B57]">03 / ARTWORK</span>
               <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-white">
                 Collector Art Cards
@@ -111,7 +111,7 @@ export default function MembershipRoute() {
               </p>
             </div>
 
-            <div className="border border-[#262626] bg-[#0d0d0d] p-6">
+            <div className="rounded-lg border border-[#262626] bg-[#0d0d0d] p-6">
               <span className="font-mono text-xs text-[#0B6B57]">04 / CONCIERGE</span>
               <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-white">
                 Dedicated Concierge
@@ -135,31 +135,31 @@ export default function MembershipRoute() {
                 Each piece ordered by an Inner Circle member is hand-packed in our magnetic rigid presentation box with custom seal tissue and an edition certificate signed by the Dhaka studio atelier.
               </p>
               <div className="mt-6 flex flex-wrap gap-2 text-[10px] font-mono uppercase text-[#0B6B57]">
-                <span className="border border-[#0B6B57]/40 px-2.5 py-1">Magnetic Rigid Box</span>
-                <span className="border border-[#0B6B57]/40 px-2.5 py-1">Archival Tissue Wrap</span>
-                <span className="border border-[#0B6B57]/40 px-2.5 py-1">Numbered Art Print</span>
+                <span className="rounded-md border border-[#0B6B57]/40 px-2.5 py-1">Magnetic Rigid Box</span>
+                <span className="rounded-md border border-[#0B6B57]/40 px-2.5 py-1">Archival Tissue Wrap</span>
+                <span className="rounded-md border border-[#0B6B57]/40 px-2.5 py-1">Numbered Art Print</span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative aspect-square overflow-hidden border border-[#262626]">
+              <div className="relative aspect-square overflow-hidden rounded-lg border border-[#262626]">
                 <Image
                   src="/images/packaging-box.webp"
                   alt="Classified Member Box"
                   fill
                   unoptimized
                   sizes="300px"
-                  className="object-cover"
+                  className="rounded-lg object-cover"
                 />
               </div>
-              <div className="relative aspect-square overflow-hidden border border-[#262626]">
+              <div className="relative aspect-square overflow-hidden rounded-lg border border-[#262626]">
                 <Image
                   src="/images/packaging-tags.webp"
                   alt="Classified Member Tags"
                   fill
                   unoptimized
                   sizes="300px"
-                  className="object-cover"
+                  className="rounded-lg object-cover"
                 />
               </div>
             </div>

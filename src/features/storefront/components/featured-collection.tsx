@@ -106,7 +106,7 @@ export function FeaturedCollection({
           })}
         </div>
       ) : (
-        <div className="border border-[#292929] px-5 py-12 text-center">
+        <div className="rounded-lg border border-[#292929] px-5 py-12 text-center">
           <StoreIcon name="heart" className="mx-auto text-[#8b8b8b]" size={24} />
           <p className="mt-4 text-sm text-[#d7d7d7]">Your saved pieces will appear here.</p>
           <p className="mt-2 text-xs text-[#818181]">Save a piece with the heart to keep it close.</p>

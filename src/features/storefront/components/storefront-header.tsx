@@ -42,7 +42,7 @@ export function StorefrontHeader({
 
   return (
     <>
-      <div className="sticky top-0 z-40 w-full -mb-[90px] lg:-mb-[106px]">
+      <div className="sticky top-0 z-40 w-full -mb-14 lg:-mb-[72px]">
         <TopAnnouncementBar />
         <header
           className={`store-header hidden h-[72px] transition-all duration-300 lg:block ${
@@ -109,18 +109,13 @@ export function StorefrontHeader({
         </header>
 
         <header
-          className={`store-header relative flex h-14 items-center justify-between px-3.5 transition-all duration-300 lg:hidden ${
+          className={`store-header flex h-14 items-center justify-between px-3.5 transition-all duration-300 lg:hidden ${
             isScrolled
               ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
               : "border-b border-transparent bg-transparent"
           }`}
         >
-          <div className="w-[36px]" aria-hidden="true" />
-          <Link
-            href="/"
-            aria-label="Classified home"
-            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center"
-          >
+          <Link href="/" aria-label="Classified home" className="w-fit">
             <BrandLogo className="text-[1.35rem] tracking-tight text-[#f5f5f5]" />
           </Link>
           <div className="flex items-center gap-0.5">

@@ -46,7 +46,7 @@ export function AboutPage() {
       </div>
 
       {/* Hero Visual */}
-      <div className="relative mt-12 aspect-[16/9] w-full overflow-hidden border border-[#262626] sm:mt-16 lg:aspect-[21/9]">
+      <div className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-xl border border-[#262626] sm:mt-16 lg:aspect-[21/9]">
         <Image
           src="/images/campaign-dhaka.webp"
           alt="Classified campaign shoot in Dhaka"
@@ -74,7 +74,7 @@ export function AboutPage() {
         </h2>
 
         <div className="mt-8 grid gap-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
-          <div className="border border-[#262626] bg-[#0e0e0e] p-6 sm:p-7">
+          <div className="rounded-lg border border-[#262626] bg-[#0e0e0e] p-6 sm:p-7">
             <span className="text-[10px] font-mono text-[#0B6B57]">01 / SCARCITY</span>
             <h3 className="mt-3 text-lg font-semibold uppercase tracking-wide text-white">
               Strict Drop Runs
@@ -84,7 +84,7 @@ export function AboutPage() {
             </p>
           </div>
 
-          <div className="border border-[#262626] bg-[#0e0e0e] p-6 sm:p-7">
+          <div className="rounded-lg border border-[#262626] bg-[#0e0e0e] p-6 sm:p-7">
             <span className="text-[10px] font-mono text-[#0B6B57]">02 / FABRIC</span>
             <h3 className="mt-3 text-lg font-semibold uppercase tracking-wide text-white">
               Heavyweight Engineering
@@ -94,7 +94,7 @@ export function AboutPage() {
             </p>
           </div>
 
-          <div className="border border-[#262626] bg-[#0e0e0e] p-6 sm:p-7">
+          <div className="rounded-lg border border-[#262626] bg-[#0e0e0e] p-6 sm:p-7">
             <span className="text-[10px] font-mono text-[#0B6B57]">03 / HERITAGE</span>
             <h3 className="mt-3 text-lg font-semibold uppercase tracking-wide text-white">
               Proudly Made in Bangladesh
@@ -117,8 +117,8 @@ export function AboutPage() {
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="group border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#161616]">
+          <div className="group rounded-lg border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#161616]">
               <Image
                 src="/images/packaging-box.webp"
                 alt="Classified Luxury Matte Black Magnetic Rigid Box"
@@ -136,8 +136,8 @@ export function AboutPage() {
             </p>
           </div>
 
-          <div className="group border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#161616]">
+          <div className="group rounded-lg border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#161616]">
               <Image
                 src="/images/tissue-paper.webp"
                 alt="Classified Bespoke Printed Crinkle Tissue Paper"
@@ -155,8 +155,8 @@ export function AboutPage() {
             </p>
           </div>
 
-          <div className="group border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#161616]">
+          <div className="group rounded-lg border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#161616]">
               <Image
                 src="/images/packaging-tags.webp"
                 alt="Classified Heavy Cotton Collar with Dual Tags"
@@ -174,8 +174,8 @@ export function AboutPage() {
             </p>
           </div>
 
-          <div className="group border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#161616]">
+          <div className="group rounded-lg border border-[#262626] bg-[#0e0e0e] p-3 transition-colors hover:border-[#444]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#161616]">
               <Image
                 src="/images/care-label.webp"
                 alt="Classified Proudly Made in Bangladesh Care Label"
@@ -248,7 +248,7 @@ export function SizeGuidePage() {
           <button
             type="button"
             onClick={() => setCategory("tees")}
-            className={`min-h-9 px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
+            className={`min-h-9 rounded-md px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
               category === "tees" ? "bg-white text-black" : "border border-[#333] text-[#aaa] hover:text-white"
             }`}
           >
@@ -257,7 +257,7 @@ export function SizeGuidePage() {
           <button
             type="button"
             onClick={() => setCategory("hoodies")}
-            className={`min-h-9 px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
+            className={`min-h-9 rounded-md px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
               category === "hoodies" ? "bg-white text-black" : "border border-[#333] text-[#aaa] hover:text-white"
             }`}
           >
@@ -266,7 +266,7 @@ export function SizeGuidePage() {
           <button
             type="button"
             onClick={() => setCategory("cargo")}
-            className={`min-h-9 px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
+            className={`min-h-9 rounded-md px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
               category === "cargo" ? "bg-white text-black" : "border border-[#333] text-[#aaa] hover:text-white"
             }`}
           >
@@ -275,18 +275,18 @@ export function SizeGuidePage() {
         </div>
 
         {/* Unit switch */}
-        <div className="flex items-center gap-1 border border-[#333] p-1 text-xs uppercase tracking-wider">
+        <div className="flex items-center gap-1 rounded-md border border-[#333] p-1 text-xs uppercase tracking-wider">
           <button
             type="button"
             onClick={() => setUnit("in")}
-            className={`px-3 py-1 font-semibold ${unit === "in" ? "bg-white text-black" : "text-[#888] hover:text-white"}`}
+            className={`rounded-sm px-3 py-1 font-semibold ${unit === "in" ? "bg-white text-black" : "text-[#888] hover:text-white"}`}
           >
             Inches
           </button>
           <button
             type="button"
             onClick={() => setUnit("cm")}
-            className={`px-3 py-1 font-semibold ${unit === "cm" ? "bg-white text-black" : "text-[#888] hover:text-white"}`}
+            className={`rounded-sm px-3 py-1 font-semibold ${unit === "cm" ? "bg-white text-black" : "text-[#888] hover:text-white"}`}
           >
             Centimeters
           </button>
@@ -434,12 +434,12 @@ export function SizeGuidePage() {
           Campaign Model Measurements
         </h3>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div className="border border-[#262626] bg-[#111] p-4 text-xs leading-6 text-[#aaa]">
+          <div className="rounded-lg border border-[#262626] bg-[#111] p-4 text-xs leading-6 text-[#aaa]">
             <p className="font-semibold text-white">Male Model (sitting left in campaign):</p>
             <p>Height: 6&apos;1&quot; (185 cm) · Weight: 74 kg</p>
             <p>Wearing: <span className="text-white">Signature Hoodie Size L</span> · <span className="text-white">Utility Cargo Size L</span></p>
           </div>
-          <div className="border border-[#262626] bg-[#111] p-4 text-xs leading-6 text-[#aaa]">
+          <div className="rounded-lg border border-[#262626] bg-[#111] p-4 text-xs leading-6 text-[#aaa]">
             <p className="font-semibold text-white">Female Model (standing right in campaign):</p>
             <p>Height: 5&apos;8&quot; (172 cm) · Weight: 54 kg</p>
             <p>Wearing: <span className="text-white">Core Oversized Tee Size M</span> · <span className="text-white">Utility Cargo Size S</span></p>
@@ -453,13 +453,13 @@ export function SizeGuidePage() {
           How to Measure Your Garment
         </h3>
         <ul className="mt-4 grid gap-3 text-xs leading-6 text-[#999] sm:grid-cols-3">
-          <li className="border border-[#222] p-4">
+          <li className="rounded-lg border border-[#222] p-4">
             <strong className="text-white">Chest:</strong> Lay your favorite tee flat. Measure from armpit seam to armpit seam straight across.
           </li>
-          <li className="border border-[#222] p-4">
+          <li className="rounded-lg border border-[#222] p-4">
             <strong className="text-white">Length:</strong> Measure from the highest point of the shoulder collar seam down to the bottom hem.
           </li>
-          <li className="border border-[#222] p-4">
+          <li className="rounded-lg border border-[#222] p-4">
             <strong className="text-white">Shoulder:</strong> Measure straight across the back from shoulder seam to shoulder seam.
           </li>
         </ul>
@@ -486,7 +486,7 @@ export function ShippingReturnsPage() {
 
       <div className="mt-10 grid gap-8 lg:grid-cols-2">
         {/* Domestic Shipping */}
-        <div className="border border-[#262626] bg-[#0d0d0d] p-6 sm:p-8">
+        <div className="rounded-lg border border-[#262626] bg-[#0d0d0d] p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <StoreIcon name="box" size={22} className="text-[#0B6B57]" />
             <h2 className="text-base font-semibold uppercase tracking-wide text-white">
@@ -525,7 +525,7 @@ export function ShippingReturnsPage() {
         </div>
 
         {/* International Shipping */}
-        <div className="border border-[#262626] bg-[#0d0d0d] p-6 sm:p-8">
+        <div className="rounded-lg border border-[#262626] bg-[#0d0d0d] p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <StoreIcon name="arrow-up-right" size={22} className="text-[#0B6B57]" />
             <h2 className="text-base font-semibold uppercase tracking-wide text-white">
@@ -555,7 +555,7 @@ export function ShippingReturnsPage() {
       </div>
 
       {/* 7-Day Exchange Policy */}
-      <div className="mt-12 border border-[#262626] bg-[#0d0d0d] p-6 sm:p-8">
+      <div className="mt-12 rounded-lg border border-[#262626] bg-[#0d0d0d] p-6 sm:p-8">
         <div className="flex items-center gap-3">
           <StoreIcon name="shield" size={22} className="text-[#0B6B57]" />
           <h2 className="text-base font-semibold uppercase tracking-wide text-white">
@@ -681,7 +681,7 @@ export function FaqPage() {
               setActiveCategory(tab.id as FaqCategory);
               setOpenIndex(0);
             }}
-            className={`min-h-9 px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
+            className={`min-h-9 rounded-md px-4 text-xs font-semibold uppercase tracking-wider transition-colors ${
               activeCategory === tab.id
                 ? "bg-white text-black"
                 : "border border-[#333] text-[#aaa] hover:text-white"
@@ -802,13 +802,13 @@ export function ContactPage() {
       </div>
 
       {/* Form */}
-      <div className="border border-[#262626] bg-[#0c0c0c] p-6 sm:p-8">
+      <div className="rounded-xl border border-[#262626] bg-[#0c0c0c] p-6 sm:p-8">
         <h2 className="text-base font-semibold uppercase tracking-wider text-white">
           Send a Message
         </h2>
 
         {submitted ? (
-          <div className="mt-6 border border-[#0B6B57]/40 bg-[#0B6B57]/10 p-6 text-center">
+          <div className="mt-6 rounded-lg border border-[#0B6B57]/40 bg-[#0B6B57]/10 p-6 text-center">
             <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#0B6B57] text-white">
               <StoreIcon name="check" size={20} />
             </div>
@@ -833,7 +833,7 @@ export function ContactPage() {
               <select
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                className="mt-1.5 block min-h-11 w-full border border-[#333] bg-[#141414] px-3 text-xs uppercase tracking-wider text-white outline-none focus:border-white"
+                className="mt-1.5 block min-h-11 w-full rounded-md border border-[#333] bg-[#141414] px-3 text-xs uppercase tracking-wider text-white outline-none focus:border-white"
               >
                 <option value="Order Inquiry">Order Inquiry &amp; Delivery</option>
                 <option value="Sizing Consultation">Sizing Consultation</option>
@@ -850,7 +850,7 @@ export function ContactPage() {
                   type="text"
                   required
                   placeholder="Rashid Shahriyar"
-                  className="mt-1.5 block min-h-11 w-full border border-[#333] bg-[#141414] px-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
+                  className="mt-1.5 block min-h-11 w-full rounded-md border border-[#333] bg-[#141414] px-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
                 />
               </label>
               <label className="block">
@@ -859,7 +859,7 @@ export function ContactPage() {
                   type="email"
                   required
                   placeholder="rashid@example.com"
-                  className="mt-1.5 block min-h-11 w-full border border-[#333] bg-[#141414] px-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
+                  className="mt-1.5 block min-h-11 w-full rounded-md border border-[#333] bg-[#141414] px-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
                 />
               </label>
             </div>
@@ -869,7 +869,7 @@ export function ContactPage() {
               <input
                 type="tel"
                 placeholder="+880 1700 000000"
-                className="mt-1.5 block min-h-11 w-full border border-[#333] bg-[#141414] px-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
+                className="mt-1.5 block min-h-11 w-full rounded-md border border-[#333] bg-[#141414] px-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
               />
             </label>
 
@@ -879,7 +879,7 @@ export function ContactPage() {
                 rows={5}
                 required
                 placeholder="How can we assist you with Classified.?"
-                className="mt-1.5 block w-full resize-y border border-[#333] bg-[#141414] px-3 py-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
+                className="mt-1.5 block w-full resize-y rounded-md border border-[#333] bg-[#141414] px-3 py-3 text-xs text-white placeholder:text-[#555] outline-none focus:border-white"
               />
             </label>
 

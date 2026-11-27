@@ -251,7 +251,7 @@ export function ProductDetailsPage({ product }: { product: StoreProduct }) {
                     type="button"
                     aria-pressed={size === item}
                     onClick={() => setSize(item)}
-                    className={`min-h-11 min-w-14 border px-4 font-mono text-xs uppercase tracking-wider transition-colors ${
+                    className={`min-h-11 min-w-14 rounded-md border px-4 font-mono text-xs uppercase tracking-wider transition-colors ${
                       size === item
                         ? "border-white bg-white text-black font-bold"
                         : "border-[#333] bg-[#101010] text-[#ccc] hover:border-white hover:text-white"
@@ -397,7 +397,7 @@ function CatalogCard({
     <article className="group min-w-0">
       <Link
         href={`/product/${product.id}/`}
-        className="store-product-image relative block aspect-[4/5] overflow-hidden border border-[#222] bg-[#161616]"
+        className="store-product-image relative block aspect-[4/5] overflow-hidden rounded-lg border border-[#222] bg-[#161616]"
       >
         <Image
           src={product.image}
@@ -405,16 +405,16 @@ function CatalogCard({
           fill
           unoptimized
           sizes="(max-width: 639px) 48vw, (max-width: 1023px) 32vw, 25vw"
-          className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.035]"
+          className="rounded-lg object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.035]"
         />
-        <span className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+        <span className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         {product.label ? (
-          <span className="absolute left-2.5 top-2.5 bg-white px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.14em] text-black">
+          <span className="absolute left-2.5 top-2.5 rounded-sm bg-white px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.14em] text-black">
             {product.label}
           </span>
         ) : null}
         {product.comingSoon ? (
-          <span className="absolute bottom-2.5 left-2.5 bg-black/80 px-2 py-1 text-[8px] uppercase tracking-[0.13em] text-[#bbb]">
+          <span className="absolute bottom-2.5 left-2.5 rounded-sm bg-black/80 px-2 py-1 text-[8px] uppercase tracking-[0.13em] text-[#bbb]">
             Coming soon
           </span>
         ) : null}
@@ -456,7 +456,7 @@ function CategoryFilter({
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      className={`min-h-10 border px-3 text-[9px] uppercase tracking-[0.12em] transition-colors ${
+      className={`min-h-10 rounded-md border px-3 text-[9px] uppercase tracking-[0.12em] transition-colors ${
         active
           ? "border-white bg-white text-black font-semibold"
           : "border-[#333] text-[#ccc] hover:border-white hover:text-white"

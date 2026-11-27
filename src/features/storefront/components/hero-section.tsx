@@ -171,7 +171,7 @@ export function HeroSection() {
 
       {/* 5. Typography & Campaign Content Layer */}
       <div
-        className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-[clamp(100px,13vh,120px)] pb-10 sm:px-8 sm:pb-20 sm:pt-28 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-32 will-change-transform"
+        className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-[clamp(76px,10vh,104px)] pb-10 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28 will-change-transform"
         style={{
           transform: `translate3d(0, ${scrollY * 0.18}px, 0)`,
           opacity: Math.max(0, 1 - scrollY / 600),
