@@ -10,8 +10,10 @@ import {
 } from "../data/hero-campaign";
 import { FounderCampaignDrawer } from "./founder-campaign-drawer";
 
-const heroBg = "/images/hero-bg.webp";
-const heroSubject = "/images/hero-subject.webp";
+const heroBgMobile = "/images/hero-bg.webp";
+const heroSubjectMobile = "/images/hero-subject.webp";
+const heroBgDesktop = "/images/hero-bg-desktop.webp";
+const heroSubjectDesktop = "/images/hero-subject-desktop.webp";
 
 export function HeroSection() {
   const [campaign, setCampaign] = useState<HeroCampaignData>(defaultHeroCampaign);
@@ -67,21 +69,32 @@ export function HeroSection() {
           transform: `translate3d(${mouseOffset.x * 12}px, ${mouseOffset.y * 12}px, 0)`,
         }}
       >
+        {/* Mobile Background (< 640px) */}
         <Image
-          src={heroBg}
+          src={heroBgMobile}
           alt="Concrete architectural backdrop"
           fill
           priority
           unoptimized
           sizes="100vw"
-          className="hero-animate-bg object-cover object-[center_18%] sm:object-[70%_center]"
+          className="hero-animate-bg object-cover object-[center_18%] sm:hidden"
+        />
+        {/* Desktop Background (>= 640px) */}
+        <Image
+          src={heroBgDesktop}
+          alt="Concrete architectural backdrop"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="hero-animate-bg hidden object-cover object-right-bottom sm:block"
         />
       </div>
 
       {/* 2. Middle Layer: Ghosted Giant C Brand Mark (strictly BEHIND subject) */}
       <div
         aria-hidden="true"
-        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[10%] sm:top-[4%] sm:h-[76%] lg:right-[15%] lg:top-[5%] lg:h-[82%] will-change-transform"
+        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[6%] sm:top-[6%] sm:h-[68%] lg:right-[8%] lg:top-[8%] lg:h-[72%] will-change-transform"
         style={{
           transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px, 0)`,
         }}
@@ -101,14 +114,25 @@ export function HeroSection() {
           transform: `translate3d(${mouseOffset.x * -16}px, ${mouseOffset.y * -14}px, 0)`,
         }}
       >
+        {/* Mobile Subject (< 640px) */}
         <Image
-          src={heroSubject}
+          src={heroSubjectMobile}
           alt="Classified. campaign featuring signature hoodie and sunglasses"
           fill
           priority
           unoptimized
           sizes="100vw"
-          className="hero-animate-subject object-cover object-[center_18%] sm:object-[70%_center]"
+          className="hero-animate-subject object-cover object-[center_18%] sm:hidden"
+        />
+        {/* Desktop Subject (>= 640px) */}
+        <Image
+          src={heroSubjectDesktop}
+          alt="Classified. campaign featuring signature hoodie and sunglasses"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="hero-animate-subject hidden object-cover object-right-bottom sm:block"
         />
       </div>
 
