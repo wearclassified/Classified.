@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { StoreIcon } from "./store-icon";
 import {
@@ -10,13 +10,13 @@ import {
 } from "../data/hero-campaign";
 import { FounderCampaignDrawer } from "./founder-campaign-drawer";
 
-const heroImage = "/images/hero-campaign.webp";
-const heroImageMobile = "/images/hero-campaign-mobile.webp";
-const heroImageMobileBoy = "/images/hero-campaign-mobile-boy.webp";
+const heroBg = "/images/hero-bg.webp";
+const heroSubject = "/images/hero-subject.webp";
 
 export function HeroSection() {
   const [campaign, setCampaign] = useState<HeroCampaignData>(defaultHeroCampaign);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setCampaign(getStoredHeroCampaign());
@@ -40,34 +40,51 @@ export function HeroSection() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
+  // Subtle interactive 3D spatial parallax on desktop
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    // Only apply on screens wider than 768px
+    if (window.innerWidth < 768) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setMouseOffset({ x, y });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setMouseOffset({ x: 0, y: 0 });
+  }, []);
+
   return (
-    <section className="store-hero relative isolate flex min-h-[64vh] items-start overflow-hidden border-b border-[#292929] sm:min-h-[580px] sm:items-end lg:min-h-[min(78vh,840px)]">
-      {/* Mobile Hero Image (portrait, < 640px only) */}
-      <Image
-        src={heroImageMobile}
-        alt="Classified. campaign featuring signature hoodie and sunglasses"
-        fill
-        priority
-        unoptimized
-        sizes="100vw"
-        className="store-hero-image -z-20 object-cover object-[center_18%] transition-transform duration-500 ease-out sm:hidden"
-      />
+    <section
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="store-hero relative isolate flex min-h-[64vh] items-start overflow-hidden border-b border-[#292929] sm:min-h-[580px] sm:items-end lg:min-h-[min(78vh,840px)]"
+    >
+      {/* 1. Background Layer: Concrete Architectural Wall */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-30 transition-transform duration-700 ease-out will-change-transform"
+        style={{
+          transform: `translate3d(${mouseOffset.x * 12}px, ${mouseOffset.y * 12}px, 0)`,
+        }}
+      >
+        <Image
+          src={heroBg}
+          alt="Concrete architectural backdrop"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="hero-animate-bg object-cover object-[center_18%] sm:object-[70%_center]"
+        />
+      </div>
 
-      {/* Desktop Hero Image (landscape, 640px+) */}
-      <Image
-        src={heroImage}
-        alt="Classified. campaign featuring signature hoodie and sunglasses"
-        fill
-        priority
-        unoptimized
-        sizes="100vw"
-        className="store-hero-image -z-20 hidden object-cover object-[70%_center] transition-transform duration-500 ease-out sm:block"
-      />
-
-      {/* Ghosted Giant C Brand Mark on Concrete Wall */}
+      {/* 2. Middle Layer: Ghosted Giant C Brand Mark (strictly BEHIND subject) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[-2%] top-[-1%] -z-[15] h-[58%] w-auto select-none opacity-45 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
+        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[10%] sm:top-[4%] sm:h-[76%] lg:right-[15%] lg:top-[5%] lg:h-[82%] will-change-transform"
+        style={{
+          transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px, 0)`,
+        }}
       >
         <svg
           viewBox="0 0 33.5 67"
@@ -77,22 +94,28 @@ export function HeroSection() {
         </svg>
       </div>
 
-      {/* Mobile Boy Cutout (keeps Ghost C strictly behind the head, face & hoodie) */}
-      <Image
-        src={heroImageMobileBoy}
-        alt=""
-        aria-hidden="true"
-        fill
-        priority
-        unoptimized
-        sizes="100vw"
-        className="pointer-events-none -z-[12] object-cover object-[center_18%] sm:hidden"
-      />
+      {/* 3. Foreground Layer: Model Subject (Cutout) */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 transition-transform duration-500 ease-out will-change-transform"
+        style={{
+          transform: `translate3d(${mouseOffset.x * -16}px, ${mouseOffset.y * -14}px, 0)`,
+        }}
+      >
+        <Image
+          src={heroSubject}
+          alt="Classified. campaign featuring signature hoodie and sunglasses"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="hero-animate-subject object-cover object-[center_18%] sm:object-[70%_center]"
+        />
+      </div>
 
-      {/* Atmospheric Contrast Gradient */}
-      <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
+      {/* 4. Atmospheric Contrast Gradient (anchors left readability) */}
+      <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-[5]" />
 
-      {/* Content Container */}
+      {/* 5. Typography & Campaign Content Layer */}
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-7 pb-10 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28">
         <div className="max-w-[300px] xs:max-w-[340px] sm:max-w-[560px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
           {/* Eyebrow: Badge + Horizontal Rule */}
