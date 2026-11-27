@@ -52,7 +52,7 @@ export function StorefrontHeader({
           }`}
         >
           <div className="mx-auto grid h-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-8 xl:px-16">
-            <Link href="/" aria-label="Classified home" className="w-fit">
+            <Link href="/" aria-label="Classified home" className="inline-flex w-fit items-center leading-none">
               <BrandLogo className="text-[1.65rem] tracking-tight text-[#f5f5f5]" />
             </Link>
 
@@ -115,7 +115,7 @@ export function StorefrontHeader({
               : "border-b border-transparent bg-transparent"
           }`}
         >
-          <Link href="/" aria-label="Classified home" className="w-fit">
+          <Link href="/" aria-label="Classified home" className="inline-flex w-fit items-center leading-none">
             <BrandLogo className="text-[1.35rem] tracking-tight text-[#f5f5f5]" />
           </Link>
           <div className="flex items-center gap-0.5">

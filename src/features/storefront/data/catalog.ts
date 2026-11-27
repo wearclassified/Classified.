@@ -4,10 +4,13 @@ export type StoreProduct = {
   id: string;
   name: string;
   category: StoreCategoryId;
+  categoryLabel?: string;
   price?: number;
+  originalPrice?: number;
   image: string;
   imageAlt: string;
   label?: string;
+  dropBadge?: string;
   comingSoon?: boolean;
   tagline?: string;
   description?: string;
@@ -61,10 +64,13 @@ export const storeProducts: StoreProduct[] = [
     id: "core-oversized-tee",
     name: "Core Oversized Tee",
     category: "tees",
+    categoryLabel: "Oversized T-Shirt",
     price: 2490,
+    originalPrice: 4980,
     image: "/images/product-core-oversized-tee.webp",
     imageAlt: "Classified Core Oversized Tee in heavyweight black cotton featuring Greek statue back print",
     label: "New",
+    dropBadge: "Trending",
     tagline: "Heavyweight 280 GSM Boxy Graphic Tee",
     description:
       "Cut from ultra-dense 280 GSM compact combed cotton. Designed with dropped shoulders, elongated sleeves, and a structured 1.25\" ribbed collar that retains its shape over years of wear. Features the archival classical Greek statue artwork screen-printed across the back with subtle discharge ink for a soft, breathable hand feel.",
@@ -92,10 +98,13 @@ export const storeProducts: StoreProduct[] = [
     id: "signature-hoodie",
     name: "Signature Hoodie",
     category: "hoodies",
+    categoryLabel: "Oversized Hoodie",
     price: 4490,
+    originalPrice: 8980,
     image: "/images/product-signature-hoodie.webp",
     imageAlt: "Classified Signature Hoodie in heavy black fleece with classical Greek sculpture graphic",
     label: "New",
+    dropBadge: "New Arrival",
     tagline: "460 GSM Heavy French Terry Fleece",
     description:
       "Engineered for maximum drape and structural silhouette. Crafted from custom-knit 460 GSM combed French terry cotton with a dry, substantial hand feel. Features a double-layered crossover hood without drawstrings, dropped shoulders, relaxed kangaroo pouch, and classical Greek bust artwork with laurel sleeve embellishments.",
@@ -123,8 +132,10 @@ export const storeProducts: StoreProduct[] = [
     id: "utility-cargo-pant",
     name: "Utility Cargo Pant",
     category: "cargo",
+    categoryLabel: "Tactical Cargo",
     image: "/images/product-utility-cargo-pant.webp",
     imageAlt: "Classified Utility Cargo Pant in relaxed heavyweight cotton with 3D flap pockets",
+    dropBadge: "Coming Soon",
     comingSoon: true,
     tagline: "Tactical Relaxed Cotton Twill",
     description:
@@ -151,8 +162,10 @@ export const storeProducts: StoreProduct[] = [
     id: "classified-beanie",
     name: "Classified Beanie",
     category: "accessories",
+    categoryLabel: "Streetwear Accessory",
     image: "/images/product-classified-beanie.webp",
     imageAlt: "Classified Streetwear Tag & Acrylic Accessory Charm",
+    dropBadge: "Coming Soon",
     comingSoon: true,
     tagline: "Laser-Engraved Streetwear Tag & Charm",
     description:

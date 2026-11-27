@@ -39,7 +39,7 @@ export function StorefrontFooter({ hasMobileBottomNav = true }: { hasMobileBotto
     >
       <div className="store-container grid gap-8 py-9 sm:grid-cols-2 sm:gap-6 sm:py-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <Link href="/" aria-label="Classified home" className="inline-flex">
+          <Link href="/" aria-label="Classified home" className="inline-flex w-fit items-center leading-none">
             <BrandLogo className="text-2xl text-[#f5f5f5]" />
           </Link>
           <p className="mt-3 max-w-xs text-xs leading-5 text-[#929292]">

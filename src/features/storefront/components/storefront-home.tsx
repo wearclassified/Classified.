@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { CategorySection } from "./category-section";
 import { FeaturedCollection } from "./featured-collection";
 import { HeroSection } from "./hero-section";
+import { LatestDropsSection } from "./latest-drops-section";
 import { BrandManifesto } from "./brand-manifesto";
 import { MembershipSection } from "./membership-section";
 import { MobileBottomNav } from "./mobile-bottom-nav";
@@ -71,6 +72,11 @@ export function StorefrontHome() {
   }
 
   function addToCart(product: StoreProduct, size: string) {
+    if (product.comingSoon) {
+      setAnnouncement(`${product.name} is coming soon and is not orderable.`);
+      return;
+    }
+
     setCartLines((current) => {
       const existing = current.find((line) => line.product.id === product.id && line.size === size);
       if (existing) {
@@ -119,6 +125,12 @@ export function StorefrontHome() {
       />
       <main className="pb-16 lg:pb-0">
         <HeroSection />
+        <LatestDropsSection
+          products={storeProducts}
+          wishlist={wishlist}
+          onWishlistToggle={toggleWishlist}
+          onAddToCart={addToCart}
+        />
         <CategorySection
           selectedCategory={selectedCategory}
           onSelectCategory={(category) => {
