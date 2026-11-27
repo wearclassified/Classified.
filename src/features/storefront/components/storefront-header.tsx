@@ -90,16 +90,7 @@ export function StorefrontHeader({
       </header>
 
       <header className="store-header sticky top-0 z-40 flex h-14 items-center justify-between border-b border-[#292929] bg-[#080808] px-3.5 lg:hidden">
-        <button
-          type="button"
-          aria-label="Open menu"
-          aria-expanded={mobileMenuOpen}
-          onClick={() => setMobileMenuOpen(true)}
-          className="store-header-action"
-        >
-          <StoreIcon name="menu" />
-        </button>
-        <Link href="/" aria-label="Classified home" className="absolute left-1/2 -translate-x-1/2">
+        <Link href="/" aria-label="Classified home" className="w-fit">
           <BrandLogo className="text-[1.35rem] tracking-tight text-[#f5f5f5]" />
         </Link>
         <div className="flex items-center gap-0.5">
