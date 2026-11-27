@@ -68,7 +68,7 @@ export function HeroSection() {
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 pb-8 pt-20 sm:px-8 sm:pb-16 sm:pt-24 lg:px-16 lg:pb-[clamp(68px,11vh,140px)] lg:pt-28">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 pb-[4.5rem] pt-20 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28">
         <div className="max-w-[340px] xs:max-w-[380px] sm:max-w-[560px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
           {/* Eyebrow: Badge + Horizontal Rule */}
           <div className="flex items-center gap-3">
