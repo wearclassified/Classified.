@@ -39,7 +39,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="store-hero relative isolate flex min-h-[500px] items-end overflow-hidden border-b border-[#292929] sm:min-h-[580px] lg:min-h-[min(78vh,840px)]">
+    <section className="store-hero relative isolate flex min-h-[88vh] items-center overflow-hidden border-b border-[#292929] sm:min-h-[580px] sm:items-end lg:min-h-[min(78vh,840px)]">
       {/* Background Campaign Photography */}
       <Image
         src={heroImage}
@@ -48,13 +48,13 @@ export function HeroSection() {
         priority
         unoptimized
         sizes="100vw"
-        className="store-hero-image -z-20 scale-[1.46] origin-[67%_36%] object-cover object-[68%_center] sm:scale-100 sm:origin-center sm:object-[68%_center] transition-transform duration-500 ease-out"
+        className="store-hero-image -z-20 scale-[1.72] origin-[62%_28%] object-cover object-[62%_28%] sm:scale-100 sm:origin-center sm:object-[68%_center] transition-transform duration-500 ease-out"
       />
 
       {/* Ghosted Giant C Brand Mark on Concrete Wall */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[2%] top-[1%] -z-15 h-[62%] w-auto select-none opacity-45 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
+        className="pointer-events-none absolute right-[-3%] top-[-1%] -z-15 h-[55%] w-auto select-none opacity-50 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
       >
         <svg
           viewBox="0 0 33.5 67"
@@ -68,8 +68,8 @@ export function HeroSection() {
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 pb-[4.5rem] pt-20 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28">
-        <div className="max-w-[340px] xs:max-w-[380px] sm:max-w-[560px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-[18vh] pb-16 sm:px-8 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-[clamp(76px,12vh,150px)] lg:pt-28">
+        <div className="max-w-[300px] xs:max-w-[340px] sm:max-w-[560px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
           {/* Eyebrow: Badge + Horizontal Rule */}
           <div className="flex items-center gap-3">
             <span className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-white sm:text-[13px] md:text-[14px]">
@@ -87,16 +87,16 @@ export function HeroSection() {
           {campaign.showDiscount && (
             <div className="mt-2.5 flex items-start gap-1 select-none leading-none sm:mt-3 sm:gap-2">
               {/* Giant Discount Number */}
-              <span className="text-[clamp(4.2rem,12.8vw,8.6rem)] font-black italic tracking-[-0.045em] text-[#03bf93] leading-[0.84] drop-shadow-[0_4px_30px_rgba(3,191,147,0.38)]">
+              <span className="text-[clamp(5rem,20vw,8.6rem)] font-black italic tracking-[-0.045em] text-[#03bf93] leading-[0.84] drop-shadow-[0_4px_30px_rgba(3,191,147,0.38)] sm:text-[clamp(4.2rem,12.8vw,8.6rem)]">
                 {campaign.discountNumber}
               </span>
 
               {/* Stacked % and OFF */}
               <div className="flex flex-col justify-between py-1 leading-none self-stretch pb-1">
-                <span className="text-[clamp(1.7rem,4.8vw,3.2rem)] font-black italic text-[#03bf93] leading-none">
+                <span className="text-[clamp(2rem,5.5vw,3.2rem)] font-black italic text-[#03bf93] leading-none sm:text-[clamp(1.7rem,4.8vw,3.2rem)]">
                   {campaign.discountSymbol}
                 </span>
-                <span className="text-[clamp(1.5rem,4.2vw,2.8rem)] font-black italic tracking-tight text-white leading-none">
+                <span className="text-[clamp(1.8rem,5vw,2.8rem)] font-black italic tracking-tight text-white leading-none sm:text-[clamp(1.5rem,4.2vw,2.8rem)]">
                   {campaign.discountUnit}
                 </span>
               </div>
@@ -104,7 +104,7 @@ export function HeroSection() {
           )}
 
           {/* Main Manifesto Headline */}
-          <h1 className="mt-2 text-[clamp(2.3rem,6.8vw,5.8rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.045em] text-white sm:mt-3">
+          <h1 className="mt-2 text-[clamp(2.6rem,8.5vw,5.8rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.045em] text-white sm:mt-3 sm:text-[clamp(2.3rem,6.8vw,5.8rem)]">
             <span className="block">{campaign.titleLine1}</span>
             <span className="block">{campaign.titleLine2}</span>
           </h1>
