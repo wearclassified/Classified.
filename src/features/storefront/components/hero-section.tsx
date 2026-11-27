@@ -12,6 +12,7 @@ import { FounderCampaignDrawer } from "./founder-campaign-drawer";
 
 const heroImage = "/images/hero-campaign.webp";
 const heroImageMobile = "/images/hero-campaign-mobile.webp";
+const heroImageMobileBoy = "/images/hero-campaign-mobile-boy.webp";
 
 export function HeroSection() {
   const [campaign, setCampaign] = useState<HeroCampaignData>(defaultHeroCampaign);
@@ -66,7 +67,7 @@ export function HeroSection() {
       {/* Ghosted Giant C Brand Mark on Concrete Wall */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[11%] top-[1%] -z-15 h-[55%] w-auto select-none opacity-45 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
+        className="pointer-events-none absolute right-[-2%] top-[-1%] -z-[15] h-[58%] w-auto select-none opacity-45 mix-blend-screen sm:right-[8%] sm:top-[3%] sm:h-[72%] lg:right-[15%] lg:top-[4%] lg:h-[82%]"
       >
         <svg
           viewBox="0 0 33.5 67"
@@ -75,6 +76,18 @@ export function HeroSection() {
           <path d="M 33.5,0 C 15,0 0,15 0,33.5 C 0,52 15,67 33.5,67 L 33.5,47 C 26,47 20,41 20,33.5 C 20,26 26,20 33.5,20 Z" />
         </svg>
       </div>
+
+      {/* Mobile Boy Cutout (keeps Ghost C strictly behind the head, face & hoodie) */}
+      <Image
+        src={heroImageMobileBoy}
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="pointer-events-none -z-[12] object-cover object-[center_18%] sm:hidden"
+      />
 
       {/* Atmospheric Contrast Gradient */}
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
