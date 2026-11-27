@@ -70,7 +70,7 @@ export function HeroSection() {
       >
         <svg
           viewBox="0 0 33.5 67"
-          className="h-full w-auto fill-[#03bf93]/85 drop-shadow-[0_0_60px_rgba(3,191,147,0.35)]"
+          className="h-full w-auto fill-[#03bf93]/85"
         >
           <path d="M 33.5,0 C 15,0 0,15 0,33.5 C 0,52 15,67 33.5,67 L 33.5,47 C 26,47 20,41 20,33.5 C 20,26 26,20 33.5,20 Z" />
         </svg>
@@ -99,7 +99,7 @@ export function HeroSection() {
           {campaign.showDiscount && (
             <div className="mt-2.5 flex items-start gap-1 select-none leading-none sm:mt-3 sm:gap-2">
               {/* Giant Discount Number */}
-              <span className="text-[clamp(5rem,20vw,8.6rem)] font-black italic tracking-[-0.045em] text-[#03bf93] leading-[0.84] drop-shadow-[0_4px_30px_rgba(3,191,147,0.38)] sm:text-[clamp(4.2rem,12.8vw,8.6rem)]">
+              <span className="text-[clamp(5rem,20vw,8.6rem)] font-black italic tracking-[-0.045em] text-[#03bf93] leading-[0.84] sm:text-[clamp(4.2rem,12.8vw,8.6rem)]">
                 {campaign.discountNumber}
               </span>
 
@@ -124,7 +124,7 @@ export function HeroSection() {
           {/* Emerald Brand Accent Bar */}
           <div
             aria-hidden="true"
-            className="mt-3.5 h-[3.5px] w-11 rounded-full bg-[#03bf93] shadow-[0_0_14px_rgba(3,191,147,0.85)] sm:mt-4 sm:h-[4px] sm:w-14"
+            className="mt-3.5 h-[3.5px] w-11 rounded-full bg-[#03bf93] sm:mt-4 sm:h-[4px] sm:w-14"
           />
 
           {/* Duration Date Row */}
