@@ -15,8 +15,8 @@ export function BrandLogo({ className }: BrandLogoProps) {
     <span
       className={`inline-flex items-center gap-2 leading-none ${binggoWood.className} ${className ?? ""}`}
     >
-      <BrandMark className="h-[1.05em] w-auto shrink-0" />
-      <span className="inline-block translate-y-[0.07em] leading-none text-inherit">Classified.</span>
+      <BrandMark className="h-[1.05em] w-auto shrink-0 translate-y-[0.02em]" />
+      <span className="inline-block translate-y-[0.06em] leading-none text-inherit">Classified.</span>
     </span>
   );
 }
