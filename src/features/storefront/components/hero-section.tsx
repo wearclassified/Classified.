@@ -6,7 +6,7 @@ const heroImage = "/images/hero-campaign.webp";
 
 export function HeroSection() {
   return (
-    <section className="store-hero relative isolate flex min-h-[300px] items-end overflow-hidden border-b border-[#292929] sm:min-h-[440px] lg:min-h-[min(65vh,720px)]">
+    <section className="store-hero relative isolate flex min-h-[350px] items-end overflow-hidden border-b border-[#292929] sm:min-h-[460px] lg:min-h-[min(65vh,720px)]">
       <Image
         src={heroImage}
         alt="Classified. campaign featuring signature hoodie and sunglasses"
@@ -17,7 +17,7 @@ export function HeroSection() {
         className="store-hero-image -z-20 object-cover object-[70%_center] sm:object-[65%_center]"
       />
       <div aria-hidden="true" className="store-hero-shade absolute inset-0 -z-10" />
-      <div className="mx-auto w-full max-w-[1600px] px-4 pb-8 pt-10 sm:px-8 sm:pb-16 sm:pt-16 lg:px-16 lg:pb-[clamp(72px,12vh,150px)]">
+      <div className="mx-auto w-full max-w-[1600px] px-4 pb-8 pt-20 sm:px-8 sm:pb-16 sm:pt-24 lg:px-16 lg:pb-[clamp(72px,12vh,150px)] lg:pt-28">
         <div className="max-w-[530px] motion-safe:animate-[cb-land-in_0.55s_ease-out_both]">
           <p className="mb-4 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.3em] text-[#e2e2e2] sm:mb-5 sm:text-xs">
             Founding Collection — EST. 2024

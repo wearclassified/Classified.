@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
 import { storeCategories } from "../data/catalog";
@@ -26,12 +26,28 @@ export function StorefrontHeader({
 }: StorefrontHeaderProps) {
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 15);
+    }
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <>
-      <header className="store-header sticky top-0 z-40 hidden h-[72px] border-b border-[#292929] bg-[#080808] lg:block">
+      <header
+        className={`store-header sticky top-0 z-40 -mb-[72px] hidden h-[72px] transition-all duration-300 lg:block ${
+          isScrolled
+            ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
         <div className="mx-auto grid h-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-8 xl:px-16">
           <Link href="/" aria-label="Classified home" className="w-fit">
             <BrandLogo className="text-[1.65rem] tracking-tight text-[#f5f5f5]" />
@@ -89,7 +105,13 @@ export function StorefrontHeader({
         </div>
       </header>
 
-      <header className="store-header sticky top-0 z-40 flex h-14 items-center justify-between border-b border-[#292929] bg-[#080808] px-3.5 lg:hidden">
+      <header
+        className={`store-header sticky top-0 z-40 -mb-14 flex h-14 items-center justify-between px-3.5 transition-all duration-300 lg:hidden ${
+          isScrolled
+            ? "border-b border-[#292929]/80 bg-[#080808]/80 backdrop-blur-md shadow-lg"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
         <Link href="/" aria-label="Classified home" className="w-fit">
           <BrandLogo className="text-[1.35rem] tracking-tight text-[#f5f5f5]" />
         </Link>
