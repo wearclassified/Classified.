@@ -116,10 +116,6 @@ export function StorefrontHome() {
         cartCount={cartCount}
         onCart={openCart}
         onSearch={openSearch}
-        onSelectCategory={(category) => {
-          setSelectedCategory(category);
-          setShowWishlistOnly(false);
-        }}
       />
       <main className="pb-16 lg:pb-0">
         <HeroSection />

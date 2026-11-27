@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { formatBDT, type StoreProduct } from "../data/catalog";
 import { StoreIcon } from "./store-icon";
 
@@ -86,9 +87,8 @@ export function FeaturedCollection({
                     <StoreIcon name="arrow-right" size={17} />
                   </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => onQuickView(product)}
+                <Link
+                  href={`/product/${product.id}/`}
                   className="mt-2 flex w-full items-start justify-between gap-2 text-left"
                 >
                   <span className="min-w-0">
@@ -100,7 +100,7 @@ export function FeaturedCollection({
                     </span>
                   </span>
                   <StoreIcon name="arrow-right" size={15} className="mt-0.5 shrink-0 text-[#a3a3a3]" />
-                </button>
+                </Link>
               </article>
             );
           })}

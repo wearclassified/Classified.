@@ -3,28 +3,26 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
-import { storeCategories, type StoreCategoryId } from "../data/catalog";
+import { storeCategories } from "../data/catalog";
 import { StoreIcon } from "./store-icon";
 
 type StorefrontHeaderProps = {
   cartCount: number;
   onCart: () => void;
   onSearch: () => void;
-  onSelectCategory: (category: StoreCategoryId) => void;
 };
 
 const navigation = [
-  { label: "Collections", href: "#featured" },
-  { label: "New Drops", href: "#featured" },
-  { label: "Members", href: "#membership" },
-  { label: "About", href: "#manifesto" },
+  { label: "Collections", href: "/shop/" },
+  { label: "New Drops", href: "/shop/#new-arrivals" },
+  { label: "Members", href: "/membership/" },
+  { label: "About", href: "/about/" },
 ];
 
 export function StorefrontHeader({
   cartCount,
   onCart,
   onSearch,
-  onSelectCategory,
 }: StorefrontHeaderProps) {
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,25 +52,22 @@ export function StorefrontHeader({
               {shopOpen ? (
                 <div className="absolute left-1/2 top-[calc(100%-1px)] w-56 -translate-x-1/2 border border-[#292929] bg-[#101010] py-2 shadow-2xl">
                   {storeCategories.map((category) => (
-                    <a
+                    <Link
                       key={category.id}
-                      href="#featured"
-                      onClick={() => {
-                        onSelectCategory(category.id);
-                        setShopOpen(false);
-                      }}
+                      href={`/collections/${category.id}/`}
+                      onClick={() => setShopOpen(false)}
                       className="block px-4 py-3 text-xs uppercase tracking-[0.12em] text-[#c8c8c8] transition-colors hover:bg-white/5 hover:text-white"
                     >
                       {category.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               ) : null}
             </div>
             {navigation.map((item) => (
-              <a key={item.label} href={item.href} className="store-nav-link">
+              <Link key={item.label} href={item.href} className="store-nav-link">
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -140,22 +135,19 @@ export function StorefrontHeader({
             </p>
             <div className="mt-3 flex flex-col">
               {storeCategories.map((category) => (
-                <a
+                <Link
                   key={category.id}
-                  href="#featured"
-                  onClick={() => {
-                    onSelectCategory(category.id);
-                    closeMobileMenu();
-                  }}
+                  href={`/collections/${category.id}/`}
+                  onClick={closeMobileMenu}
                   className="border-b border-[#292929] py-4 text-sm uppercase tracking-[0.12em] text-[#f5f5f5]"
                 >
                   {category.name}
-                </a>
+                </Link>
               ))}
               {navigation.map((item) => (
-                <a key={item.label} href={item.href} onClick={closeMobileMenu} className="border-b border-[#292929] py-4 text-sm uppercase tracking-[0.12em] text-[#f5f5f5]">
+                <Link key={item.label} href={item.href} onClick={closeMobileMenu} className="border-b border-[#292929] py-4 text-sm uppercase tracking-[0.12em] text-[#f5f5f5]">
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
             <Link

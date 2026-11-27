@@ -137,7 +137,7 @@ export function SiteFooter() {
     setSettingsOpen(true);
   };
 
-  if (pathname === "/") return null;
+  if (pathname !== "/login" && pathname !== "/login/") return null;
 
   return (
     <>
