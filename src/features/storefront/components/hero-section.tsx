@@ -94,7 +94,7 @@ export function HeroSection() {
       {/* 2. Middle Layer: Ghosted Giant C Brand Mark (strictly BEHIND subject) */}
       <div
         aria-hidden="true"
-        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[6%] sm:top-[6%] sm:h-[68%] lg:right-[8%] lg:top-[8%] lg:h-[72%] will-change-transform"
+        className="hero-animate-ghost pointer-events-none absolute right-[-2%] top-[-1%] -z-20 h-[58%] w-auto select-none opacity-50 mix-blend-screen transition-transform duration-500 ease-out sm:right-[11%] sm:top-[10%] sm:h-[64%] lg:right-[13%] lg:top-[12%] lg:h-[68%] will-change-transform"
         style={{
           transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px, 0)`,
         }}
