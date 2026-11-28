@@ -10,16 +10,10 @@ import { MembershipSection } from "./membership-section";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { StorefrontFooter } from "./storefront-footer";
 import { StorefrontHeader } from "./storefront-header";
-import { CartDrawer, QuickView, SearchOverlay, type CartLine } from "./storefront-overlays";
-import {
-  storeCategories,
-  storeProducts,
-  type StoreCategoryId,
-  type StoreProduct,
-} from "../data/catalog";
+import { CartDrawer, QuickView, type CartLine } from "./storefront-overlays";
+import { storeProducts, type StoreProduct } from "../data/catalog";
 
 export function StorefrontHome() {
-  const [selectedCategory, setSelectedCategory] = useState<StoreCategoryId | null>(null);
   const [wishlist, setWishlist] = useState<Set<string>>(() => new Set());
   const [showWishlistOnly, setShowWishlistOnly] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -31,11 +25,10 @@ export function StorefrontHome() {
 
   const visibleProducts = useMemo(
     () =>
-      storeProducts.filter((product) => {
-        if (showWishlistOnly) return wishlist.has(product.id);
-        return selectedCategory === null || product.category === selectedCategory;
-      }),
-    [selectedCategory, showWishlistOnly, wishlist],
+      showWishlistOnly
+        ? storeProducts.filter((product) => wishlist.has(product.id))
+        : storeProducts,
+    [showWishlistOnly, wishlist],
   );
   const searchResults = useMemo(() => {
     const query = searchQuery.trim().toLocaleLowerCase();
@@ -44,8 +37,7 @@ export function StorefrontHome() {
       : storeProducts;
   }, [searchQuery]);
   const cartCount = cartLines.reduce((count, line) => count + line.quantity, 0);
-  const categoryTitle =
-    storeCategories.find((category) => category.id === selectedCategory)?.name ?? null;
+  const categoryTitle = null;
 
   function openSearch() {
     setCartOpen(false);
@@ -107,12 +99,10 @@ export function StorefrontHome() {
 
   function showSavedPieces() {
     setShowWishlistOnly((current) => !current);
-    setSelectedCategory(null);
     document.getElementById("featured")?.scrollIntoView({ behavior: "smooth" });
   }
 
   function showAllProducts() {
-    setSelectedCategory(null);
     setShowWishlistOnly(false);
   }
 
@@ -120,23 +110,26 @@ export function StorefrontHome() {
     <div className="storefront-shell min-h-dvh bg-[#080808] text-[#f5f5f5]">
       <StorefrontHeader
         cartCount={cartCount}
+        searchOpen={searchOpen}
+        searchQuery={searchQuery}
+        searchResults={searchResults}
         onCart={openCart}
         onSearch={openSearch}
+        onSearchQueryChange={setSearchQuery}
+        onSearchClose={() => setSearchOpen(false)}
+        onQuickView={(product) => {
+          setSearchOpen(false);
+          setQuickViewProduct(product);
+        }}
       />
       <main className="pb-16 lg:pb-0">
         <HeroSection />
+        <CategorySection />
         <LatestDropsSection
           products={storeProducts}
           wishlist={wishlist}
           onWishlistToggle={toggleWishlist}
           onAddToCart={addToCart}
-        />
-        <CategorySection
-          selectedCategory={selectedCategory}
-          onSelectCategory={(category) => {
-            setSelectedCategory(category);
-            setShowWishlistOnly(false);
-          }}
         />
         <FeaturedCollection
           products={visibleProducts}
@@ -162,18 +155,6 @@ export function StorefrontHome() {
         {announcement}
       </p>
 
-      {searchOpen ? (
-        <SearchOverlay
-          query={searchQuery}
-          products={searchResults}
-          onQueryChange={setSearchQuery}
-          onClose={() => setSearchOpen(false)}
-          onQuickView={(product) => {
-            setSearchOpen(false);
-            setQuickViewProduct(product);
-          }}
-        />
-      ) : null}
       {cartOpen ? (
         <CartDrawer
           lines={cartLines}

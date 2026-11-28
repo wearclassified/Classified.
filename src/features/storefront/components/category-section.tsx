@@ -1,62 +1,61 @@
 import Image from "next/image";
-import { storeCategories, type StoreCategoryId } from "../data/catalog";
-import { StoreIcon, type StoreIconName } from "./store-icon";
+import Link from "next/link";
+import { Unbounded } from "next/font/google";
+import { storeCategories } from "../data/catalog";
 
-const categoryIcons: Record<StoreCategoryId, StoreIconName> = {
-  tees: "shirt",
-  hoodies: "shirt",
-  cargo: "grid",
-  accessories: "lock",
-};
+const categoryDisplayFont = Unbounded({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+});
 
-type CategorySectionProps = {
-  selectedCategory: StoreCategoryId | null;
-  onSelectCategory: (category: StoreCategoryId | null) => void;
-};
-
-export function CategorySection({
-  selectedCategory,
-  onSelectCategory,
-}: CategorySectionProps) {
+/**
+ * Four-tile editorial category grid rendered directly after the hero
+ * and above Latest Drops.
+ */
+export function CategorySection() {
   return (
-    <section id="categories" aria-label="Shop by category" className="store-container py-5 sm:py-7">
-      <div className="store-category-row">
-        {storeCategories.map((category) => {
-          const selected = selectedCategory === category.id;
-          const hasReleasedProduct = category.id === "tees" || category.id === "hoodies";
+    <section
+      id="categories"
+      aria-label="Shop by category"
+      className="mx-auto w-full max-w-[1600px] px-2 pt-2.5 sm:px-6 sm:pt-5 lg:px-16 lg:pt-7"
+    >
+      <div className="grid grid-cols-2 gap-1.5 sm:gap-3 lg:grid-cols-4 lg:gap-4">
+        {storeCategories.map((category) => (
+          <Link
+            key={category.id}
+            href={`/collections/${category.id}/`}
+            className="group relative block aspect-[4/5] overflow-hidden rounded-lg border border-[#262626] bg-[#101010] transition-colors duration-300 hover:border-[#404040]"
+          >
+            <Image
+              src={category.image}
+              alt={category.imageAlt}
+              fill
+              loading="eager"
+              unoptimized
+              sizes="(max-width: 1023px) 49vw, 24vw"
+              className="rounded-lg object-cover object-center transition-transform duration-500 ease-out motion-reduce:transition-none group-hover:scale-[1.045]"
+            />
 
-          return (
-            <button
-              key={category.id}
-              type="button"
-              aria-pressed={selected}
-              onClick={() => onSelectCategory(selected ? null : category.id)}
-              className={`store-category-card group rounded-lg ${selected ? "store-category-card-active" : ""}`}
+            {/* Top & bottom readability scrims */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-lg bg-[linear-gradient(180deg,rgba(0,0,0,0.68)_0%,rgba(0,0,0,0.06)_32%,rgba(0,0,0,0.08)_64%,rgba(0,0,0,0.82)_100%)]"
+            />
+
+            {/* Top Centered Extended Display Category Title */}
+            <span
+              className={`${categoryDisplayFont.className} pointer-events-none absolute inset-x-1.5 top-3 z-10 whitespace-nowrap text-center text-[clamp(0.7rem,3.05vw,1.08rem)] font-extrabold uppercase tracking-[0.02em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:inset-x-2 sm:top-4 sm:text-[clamp(0.95rem,2.3vw,1.18rem)] lg:text-[clamp(0.84rem,1.12vw,1.15rem)]`}
             >
-              <Image
-                src={category.image}
-                alt={category.imageAlt}
-                fill
-                unoptimized
-                sizes="(max-width: 640px) 72vw, (max-width: 1024px) 45vw, 25vw"
-                className="object-cover transition-transform duration-300 motion-reduce:transition-none group-hover:scale-[1.04] rounded-lg"
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/5 rounded-lg" />
-              <span className="relative z-10 flex min-w-0 items-center gap-2">
-                <StoreIcon name={categoryIcons[category.id]} size={18} />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] sm:text-xs">
-                  {category.name}
-                </span>
-                <StoreIcon name="arrow-right" size={15} className="ml-auto shrink-0" />
-              </span>
-              {!hasReleasedProduct ? (
-                <span className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-[8px] uppercase tracking-[0.15em] text-white sm:right-3 sm:top-3">
-                  Coming soon
-                </span>
-              ) : null}
-            </button>
-          );
-        })}
+              {category.name}
+            </span>
+
+            {/* Bottom Bold Display Banner */}
+            <span className="pointer-events-none absolute inset-x-1 bottom-1.5 z-10 whitespace-nowrap text-center text-[clamp(1.22rem,5.7vw,2.05rem)] font-black uppercase leading-[0.86] tracking-[-0.04em] text-[#03bf93] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] sm:bottom-2.5 lg:text-[clamp(1.3rem,2.1vw,2.05rem)]">
+              Flat 50% Off
+            </span>
+          </Link>
+        ))}
       </div>
     </section>
   );

@@ -10,7 +10,6 @@ import {
 import {
   CartDrawer,
   QuickView,
-  SearchOverlay,
   type CartLine,
 } from "./storefront-overlays";
 import { StorefrontFooter } from "./storefront-footer";
@@ -89,6 +88,9 @@ export function StorefrontPageShell({ children }: { children: ReactNode }) {
       <div className="storefront-shell min-h-dvh bg-[#080808] text-[#f5f5f5]">
         <StorefrontHeader
           cartCount={cartCount}
+          searchOpen={searchOpen}
+          searchQuery={searchQuery}
+          searchResults={searchResults}
           onCart={() => {
             setSearchOpen(false);
             setCartOpen(true);
@@ -97,6 +99,12 @@ export function StorefrontPageShell({ children }: { children: ReactNode }) {
             setCartOpen(false);
             setSearchQuery("");
             setSearchOpen(true);
+          }}
+          onSearchQueryChange={setSearchQuery}
+          onSearchClose={() => setSearchOpen(false)}
+          onQuickView={(product) => {
+            setSearchOpen(false);
+            setQuickViewProduct(product);
           }}
         />
         <main className="min-h-[65vh] pt-14 lg:pt-[72px]">{children}</main>
@@ -115,18 +123,6 @@ export function StorefrontPageShell({ children }: { children: ReactNode }) {
           {announcement}
         </p>
 
-        {searchOpen ? (
-          <SearchOverlay
-            query={searchQuery}
-            products={searchResults}
-            onQueryChange={setSearchQuery}
-            onClose={() => setSearchOpen(false)}
-            onQuickView={(product) => {
-              setSearchOpen(false);
-              setQuickViewProduct(product);
-            }}
-          />
-        ) : null}
         {cartOpen ? (
           <CartDrawer
             lines={cartLines}

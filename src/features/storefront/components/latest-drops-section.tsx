@@ -50,7 +50,7 @@ export function LatestDropsSection({
               {/* Framed Product Media */}
               <div className="p-2 pb-0 sm:p-2.5 sm:pb-0">
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-[#161616]">
-                  <Link href={`/product/${product.id}/`} className="block h-full w-full">
+                  <Link href={`/product/${product.id}/`} className="relative block h-full w-full">
                     <Image
                       src={product.image}
                       alt={product.imageAlt}
@@ -149,6 +149,15 @@ export function LatestDropsSection({
             </article>
           );
         })}
+      </div>
+
+      <div className="mt-7 flex justify-center sm:mt-9">
+        <Link
+          href="/shop/"
+          className="relative inline-block pb-1.5 pt-1.5 text-xs font-medium uppercase tracking-[0.22em] text-[#f5f5f5] transition-colors duration-300 ease-out after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-full after:-translate-x-1/2 after:origin-center after:scale-x-0 after:bg-[#03bf93] after:transition-transform after:duration-300 after:ease-out hover:text-[#03bf93] hover:after:scale-x-100 focus-visible:text-[#03bf93] focus-visible:after:scale-x-100 active:after:scale-x-100 motion-reduce:after:transition-none sm:text-[13px]"
+        >
+          View All Items
+        </Link>
       </div>
     </section>
   );

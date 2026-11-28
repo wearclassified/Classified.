@@ -5,7 +5,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { formatBDT, type StoreProduct } from "../data/catalog";
 import { StoreIcon } from "./store-icon";
 
-type SearchOverlayProps = {
+type NavbarSearchBarProps = {
+  open: boolean;
   query: string;
   products: StoreProduct[];
   onQueryChange: (query: string) => void;
@@ -13,67 +14,164 @@ type SearchOverlayProps = {
   onQuickView: (product: StoreProduct) => void;
 };
 
-export function SearchOverlay({
+/**
+ * Full-width search bar that slides left across the top navbar to cover it,
+ * paired with a live product results dropdown directly beneath.
+ */
+export function NavbarSearchBar({
+  open,
   query,
   products,
   onQueryChange,
   onClose,
   onQuickView,
-}: SearchOverlayProps) {
+}: NavbarSearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [phase, setPhase] = useState<"closed" | "open" | "closing">(open ? "open" : "closed");
+  const onCloseRef = useRef(onClose);
 
   useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    if (open) {
+      setPhase("open");
+      return;
+    }
+    setPhase((prev) => (prev === "open" ? "closing" : prev));
+  }, [open]);
+
+  useEffect(() => {
+    if (phase !== "closing") return;
+    const timer = setTimeout(() => {
+      setPhase("closed");
+    }, 260);
+    return () => clearTimeout(timer);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "open") return;
+    const focusTimer = setTimeout(() => {
+      inputRef.current?.focus({ preventScroll: true });
+    }, 40);
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        onCloseRef.current();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      clearTimeout(focusTimer);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [phase]);
+
+  if (phase === "closed") return null;
+
+  const isClosing = phase === "closing";
 
   return (
-    <OverlayFrame title="Search" onClose={onClose} align="top">
-      <label htmlFor="store-search" className="sr-only">
-        Search products
-      </label>
-      <div className="flex items-center gap-3 border-b border-[#444] pb-3">
-        <StoreIcon name="search" className="shrink-0 text-[#aaa]" />
-        <input
-          ref={inputRef}
-          id="store-search"
-          type="search"
-          value={query}
-          onChange={(event) => onQueryChange(event.target.value)}
-          placeholder="Search the collection"
-          className="min-h-10 min-w-0 flex-1 bg-transparent text-base text-white placeholder:text-[#777] focus:outline-none"
-        />
-      </div>
-      <p className="mt-5 text-[9px] uppercase tracking-[0.2em] text-[#858585]">
-        {query ? `${products.length} matching pieces` : "Preview collection"}
-      </p>
-      {products.length ? (
-        <ul className="mt-3 divide-y divide-[#292929]">
-          {products.map((product) => (
-            <li key={product.id}>
+    <>
+      <button
+        type="button"
+        aria-label="Close search"
+        onClick={onClose}
+        className={`fixed inset-0 z-20 bg-black/70 backdrop-blur-sm transition-opacity duration-[250ms] ${
+          isClosing ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+      />
+
+      <div
+        role="search"
+        aria-label="Search store products"
+        className="absolute inset-0 z-30 overflow-hidden"
+      >
+        <div
+          className={`flex h-full w-full items-center border-0 bg-[#0a0a0a]/95 backdrop-blur-md ${
+            isClosing ? "search-bar-slide-right pointer-events-none" : "search-bar-slide-left"
+          }`}
+        >
+          <div className="mx-auto flex h-full w-full max-w-[1600px] items-center gap-2.5 px-3.5 lg:gap-4 lg:px-8 xl:px-16">
+            <StoreIcon name="search" size={19} className="shrink-0 text-[#03bf93]" />
+            <label htmlFor="store-search" className="sr-only">
+              Search products
+            </label>
+            <input
+              ref={inputRef}
+              id="store-search"
+              type="search"
+              value={query}
+              onChange={(event) => onQueryChange(event.target.value)}
+              placeholder="Search the collection..."
+              className="h-10 min-w-0 flex-1 border-0 bg-transparent px-1 text-sm text-white shadow-none ring-0 placeholder:text-[#777] focus:border-0 focus:outline-none focus:ring-0 focus-visible:outline-none sm:text-base"
+            />
+            {query ? (
               <button
                 type="button"
-                onClick={() => onQuickView(product)}
-                className="flex w-full items-center gap-3 py-3 text-left"
+                onClick={() => {
+                  onQueryChange("");
+                  inputRef.current?.focus();
+                }}
+                className="shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
               >
-                <span className="relative h-16 w-12 shrink-0 overflow-hidden rounded-md bg-[#1a1a1a]">
-                  <Image src={product.image} alt="" fill unoptimized sizes="48px" className="object-cover" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-xs font-medium text-white">{product.name}</span>
-                  <span className="mt-1 block text-[10px] text-[#999]">
-                    {product.comingSoon ? "Coming soon" : formatBDT(product.price ?? 0)}
-                  </span>
-                </span>
-                <StoreIcon name="arrow-right" size={16} className="text-[#aaa]" />
+                Clear
               </button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="py-8 text-sm text-[#aaa]">No pieces found. Try another search.</p>
-      )}
-      <p className="mt-4 text-[10px] text-[#777]">Preview catalogue only; availability is not live.</p>
-    </OverlayFrame>
+            ) : null}
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close search"
+              className="store-header-action"
+            >
+              <StoreIcon name="close" size={19} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Live Matching Results Panel attached directly below covered navbar */}
+      <div
+        className={`absolute left-0 right-0 top-full z-30 border-0 bg-[#0a0a0a]/95 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+          isClosing ? "pointer-events-none -translate-y-2 opacity-0" : "search-results-in"
+        }`}
+      >
+        <div className="mx-auto max-h-[min(68dvh,480px)] max-w-[1600px] overflow-y-auto px-3.5 py-4 sm:px-6 lg:px-8 xl:px-16">
+          <p className="text-[9px] uppercase tracking-[0.2em] text-[#858585]">
+            {query ? `${products.length} matching pieces` : "Preview collection"}
+          </p>
+          {products.length ? (
+            <ul className="mt-3 divide-y divide-[#222222] sm:grid sm:grid-cols-2 sm:gap-2 sm:divide-y-0 lg:grid-cols-4">
+              {products.map((product) => (
+                <li key={product.id}>
+                  <button
+                    type="button"
+                    onClick={() => onQuickView(product)}
+                    className="flex w-full items-center gap-3 rounded-lg p-2 text-left transition-colors hover:bg-white/5"
+                  >
+                    <span className="relative h-14 w-11 shrink-0 overflow-hidden rounded-md bg-[#1a1a1a]">
+                      <Image src={product.image} alt="" fill unoptimized sizes="44px" className="object-cover" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-xs font-medium text-white">{product.name}</span>
+                      <span className="mt-1 block text-[10px] text-[#999]">
+                        {product.comingSoon ? "Coming soon" : formatBDT(product.price ?? 0)}
+                      </span>
+                    </span>
+                    <StoreIcon name="arrow-right" size={15} className="shrink-0 text-[#aaa]" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="py-6 text-sm text-[#aaa]">No pieces found. Try another search.</p>
+          )}
+          <p className="mt-3 text-[10px] text-[#777]">Preview catalogue only; availability is not live.</p>
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -211,20 +211,144 @@ nextjs-portal {
 
 .store-header-action {
   position: relative;
+  isolation: isolate;
   display: inline-flex;
   width: 44px;
   height: 44px;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  border-radius: 9999px;
   color: #dedede;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition: color 180ms ease;
 }
 
-.store-header-action:hover {
+.store-header-action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background-color: rgb(255 255 255 / 10%);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 180ms ease, transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.store-header-action:hover,
+.store-header-action:focus-visible {
   color: #fff;
-  background-color: rgb(255 255 255 / 5%);
+}
+
+.store-header-action:hover::before,
+.store-header-action:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.store-header-action:active::before {
+  transform: scale(0.92);
+}
+
+.store-search-trigger {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  border: 0;
+  border-radius: 9999px;
+  color: #dedede;
+  transition: color 180ms ease;
+}
+
+.store-search-pill {
+  position: absolute;
+  inset-block: 2px;
+  right: 0;
+  display: inline-flex;
+  width: 44px;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 0;
+  border-radius: 9999px;
+  background-color: transparent;
+  transition:
+    width 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms ease;
+}
+
+.store-search-pill-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  padding-left: 16px;
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #a3a3a3;
+  opacity: 0;
+  transform: translateX(10px);
+  transition:
+    opacity 200ms ease,
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.store-search-pill-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 40px;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-search-trigger:hover,
+.store-search-trigger:focus-visible {
+  color: #fff;
+}
+
+.store-search-trigger:hover .store-search-pill,
+.store-search-trigger:focus-visible .store-search-pill {
+  width: 142px;
+  background-color: rgb(255 255 255 / 11%);
+  backdrop-filter: blur(8px);
+}
+
+@media (min-width: 640px) {
+  .store-search-trigger:hover .store-search-pill,
+  .store-search-trigger:focus-visible .store-search-pill {
+    width: 164px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .store-search-trigger:hover .store-search-pill,
+  .store-search-trigger:focus-visible .store-search-pill {
+    width: 148px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .store-search-trigger:hover .store-search-pill,
+  .store-search-trigger:focus-visible .store-search-pill {
+    width: 184px;
+  }
+}
+
+.store-search-trigger:hover .store-search-pill-label,
+.store-search-trigger:focus-visible .store-search-pill-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.store-search-trigger:active .store-search-pill {
+  background-color: rgb(255 255 255 / 16%);
 }
 
 .store-button-primary,
@@ -579,6 +703,52 @@ nextjs-portal {
   animation: announcement-slide-down-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Header Search Bar Slide-Left Motion */
+@keyframes search-bar-slide-left {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes search-bar-slide-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes search-results-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-bar-slide-left {
+  animation: search-bar-slide-left 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.search-bar-slide-right {
+  animation: search-bar-slide-right 0.25s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.search-results-in {
+  animation: search-results-fade-in 0.26s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
 @media (min-width: 640px) {
   .store-container {
     padding-inline: 2rem;
@@ -607,9 +777,17 @@ nextjs-portal {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .store-hero-image {
+  .store-hero-image,
+  .search-bar-slide-left,
+  .search-bar-slide-right,
+  .search-results-in {
     animation: none;
     transform: none;
+  }
+
+  .store-search-pill,
+  .store-search-pill-label {
+    transition: none;
   }
 }
 
@@ -623,7 +801,7 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Login and create-account form fields use a single active border instead of both outline and border. */
+/* Login, create-account, and borderless navbar search controls omit double focus rings. */
 .login-form input:focus-visible,
 .login-form textarea:focus-visible,
 .login-form select:focus-visible,
@@ -631,6 +809,14 @@ textarea:focus-visible {
 #create-account-form input:focus-visible,
 #create-account-form textarea:focus-visible,
 #create-account-form select:focus-visible,
-#create-account-form button:focus-visible {
+#create-account-form button:focus-visible,
+#store-search:focus-visible,
+.store-search-trigger:focus-visible {
   outline: none;
+}
+
+#store-search::-webkit-search-cancel-button,
+#store-search::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
 }

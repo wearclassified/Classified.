@@ -249,7 +249,7 @@ export function TopAnnouncementBar() {
           onClick={handleClose}
           tabIndex={isCollapsed ? -1 : undefined}
           aria-label="Dismiss announcement for 1 hour"
-          className="absolute right-1.5 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-white/10 hover:text-white sm:right-3"
+          className="absolute right-1.5 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-zinc-400 transition-all duration-200 hover:bg-white/10 hover:text-white active:scale-90 sm:right-3"
         >
           <StoreIcon name="close" size={14} />
         </button>
